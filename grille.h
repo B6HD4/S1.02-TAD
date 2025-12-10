@@ -15,8 +15,8 @@ struct Case {
 const unsigned short int TAILLE_TAB = 200;  // Taille pysique du tableau
 
 struct Grille {
-        Case matrice[TAILLE_TAB]
-                    [TAILLE_TAB];   // Matrice contenant les cases de la grille
+        Case matrice[TAILLE_TAB][TAILLE_TAB];
+        // Matrice contenant les cases de la grille
         unsigned short int taille;  // taille logique du tableau
         char symboleCaseVide;  // Symbole dans la cazse est vide quand elle est
                                // vide
