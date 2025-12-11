@@ -32,7 +32,7 @@ char getSymboleCase(const Grille &grille, short int ligne, short int colonne);
 short int getTailleGrille(const Grille &grille);
 // Renvoie la taille logique de la grille
 
-char getSymboleCaseVide(const Grille &grille;
+char getSymboleCaseVide(const Grille &grille);
 // Revoie le symbole mis dans une case quand elle est vide
 
 char getSymboleCaseCachee(const Grille &grille);
