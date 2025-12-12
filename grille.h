@@ -27,36 +27,37 @@ struct Grille {
              Getters
 *******************************/
 char getSymboleCase(const Grille &grille, short int ligne, short int colonne);
-// Renvoie le symbole dans la case(ligne, colonne) donnée en paramètres
+// But : Renvoie le symbole dans la case(ligne, colonne) donnée en paramètres
 
 short int getTailleGrille(const Grille &grille);
-// Renvoie la taille logique de la grille
+// But : Renvoie la taille logique de la grille
 
 char getSymboleCaseVide(const Grille &grille);
-// Revoie le symbole mis dans une case quand elle est vide
+// But : Revoie le symbole mis dans une case quand elle est vide
 
 char getSymboleCaseCachee(const Grille &grille);
-// Renvoie le symbole affiché quand une case est cachée
+// But : Renvoie le symbole affiché quand une case est cachée
 
 /*******************************
              Setters
 *******************************/
 void setCaseSymbole(Grille &grille, char symbole, short int ligne,
                     short int colonne);
-// Remplit la case(ligne, colonne) avec sybole
+// But : Remplit la case(ligne, colonne) avec sybole
 
 void setCaseCachee(Grille &grille, short int ligne, short int colonne);
-// Cache la case(ligne, colonne)
+// But : Cache la case(ligne, colonne)
 
 void setTailleGrille(Grille &grille, short int taille);
-// Change la taille logique de la grille pour qu'elle soit taille
+// But : Change la taille logique de la grille pour qu'elle soit taille
 
 void setSymboleCaseVide(Grille &grille, char symbole);
-// Change le symbole mis dans une case pour qu'elle soit
+// But : Change le symbole mis dans une case pour qu'elle soit
 // vide pour qu'il soit symbole
 
 void setSymboleCaseCachee(Grille &grille, char symbole);
-// Change le symbole affiché quand une case est cachée pour qu'il soit symbole
+// But : Change le symbole affiché quand une case est cachée pour qu'il soit
+// symbole
 
 /*******************************
           Observateurs
@@ -64,38 +65,38 @@ void setSymboleCaseCachee(Grille &grille, char symbole);
 
 bool isCoordoneesValide(const Grille &grille, unsigned short int ligne,
                         unsigned short int colonne);
-// Indique si le couple (ligne, colonne) désigne (ou pas)
+// But : Indique si le couple (ligne, colonne) désigne (ou pas)
 // une case appartenant à la grille
 
 bool isCaseVide(const Grille &grille, unsigned short int ligne,
                 unsigned short int colonne);
-// Indique si la case est vide
+// But : Indique si la case est vide
 
 bool isCaseCachee(const Grille &grille, unsigned short int ligne,
                   unsigned short int colonne);
-// Idnique si la case est cachée
+// But : Indique si la case est cachée
 
 bool isGrilleVide(const Grille &grille);
-// Inidique si la grille est vide
+// But : Inidique si la grille est vide
 
 bool isGrilleVisible(const Grille &grille);
-// Indique si toute les cases de la grille sont visible
+// But : Indique si toute les cases de la grille sont visible
 
 bool isGrillePleine(Grille &grille);
-// But : indique si aucune case de la grille "grille" est vide
+// But : Indique si aucune case de la grille "grille" est vide
 
 bool isAlignementHoriz(Grille &grille, const unsigned short int ligne,
                        const unsigned short int nbSymbole);
-// But : indique s'il y a un certain nombre d’un symbole passé
+// But : Indique s'il y a un certain nombre d’un symbole passé
 // en paramètre en continu sur une ligne
 
 bool isAlignementVerti(Grille &grille, const unsigned short int colonne,
                        const unsigned short int nbSymbole);
-// But : indique s'il y a un certain nombre d’un symbole passé
+// But : Indique s'il y a un certain nombre d’un symbole passé
 // en paramètre en continu sur une colonne
 
 bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole);
-// But : vérifie s'il y a un nombre de symbole en continue sur une diagonale
+// But : Vérifie s'il y a un nombre de symbole en continue sur une diagonale
 
 /*******************************
         Modificateurs
@@ -109,7 +110,7 @@ void initGrille();
 *******************************/
 
 void printGrille(const Grille &grille);
-// Afficher la grille
+// But : Afficher la grille
 
 /*
 Procedure ou fonction
