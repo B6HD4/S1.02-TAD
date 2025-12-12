@@ -28,15 +28,23 @@ struct Grille {
 *******************************/
 char getSymboleCase(const Grille &grille, short int ligne, short int colonne);
 // But : Renvoie le symbole dans la case(ligne, colonne) donnée en paramètres
+// Préconditions : la case existe dans la grille
+// Post conditions : aucunes
 
 short int getTailleGrille(const Grille &grille);
 // But : Renvoie la taille logique de la grille
+// Préconditions : aucune
+// Post conditions : aucune
 
 char getSymboleCaseVide(const Grille &grille);
 // But : Revoie le symbole mis dans une case quand elle est vide
+// Préconditions : Aucune
+// Post condition : aucune
 
 char getSymboleCaseCachee(const Grille &grille);
 // But : Renvoie le symbole affiché quand une case est cachée
+// Préconditions : Aucune
+// Post condition : aucune
 
 /*******************************
              Setters
@@ -44,20 +52,31 @@ char getSymboleCaseCachee(const Grille &grille);
 void setCaseSymbole(Grille &grille, char symbole, short int ligne,
                     short int colonne);
 // But : Remplit la case(ligne, colonne) avec sybole
+// Préconditions : La case existe
+// Post condition : La case remplie avec symbole
 
 void setCaseCachee(Grille &grille, short int ligne, short int colonne);
 // But : Cache la case(ligne, colonne)
+// Préconditions : La case existe
+// Post condition : La case est cachée
 
 void setTailleGrille(Grille &grille, short int taille);
 // But : Change la taille logique de la grille pour qu'elle soit taille
+// Préconditions : Aucune
+// Post condition : La grille a une taille
 
 void setSymboleCaseVide(Grille &grille, char symbole);
 // But : Change le symbole mis dans une case pour qu'elle soit
 // vide pour qu'il soit symbole
+// Préconditions : Aucune
+// Post condition : Le symbole qui représente un case vide est symbole
 
 void setSymboleCaseCachee(Grille &grille, char symbole);
 // But : Change le symbole affiché quand une case est cachée pour qu'il soit
 // symbole
+// vide pour qu'il soit symbole
+// Préconditions : Aucune
+// Post condition : Le symbole qui représente un case cachée est symbole
 
 /*******************************
           Observateurs
@@ -102,8 +121,46 @@ bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole);
         Modificateurs
 *******************************/
 
-void initGrille();
-// But :
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide,
+                char symboleCaseVide, bool estCache, char symboleCaseCachee);
+// But : Remplit les champs de grille
+// Préconditions : Aucune
+// Post condition : Tout les paramètre de la grille ont une valeur valide
+
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide,
+                char symboleCaseVide, bool estCache);
+// But : Remplit les champs de grille
+// Préconditions : Aucune
+// Post condition : Tout les paramètre de la grille ont une valeur valide
+
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide,
+                bool estCache, char symboleCaseCachee);
+// But : Remplit les champs de grille
+// Préconditions : Aucune
+// Post condition : Tout les paramètre de la grille ont une valeur valide
+
+void initGrille(Grille &grille, short int taille, bool estVide,
+                char symboleCaseVide, bool estCache, char symboleCaseCachee);
+// But : Remplit les champs de grille
+// Préconditions : Aucune
+// Post condition : Tout les paramètre de la grille ont une valeur valide
+
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide,
+                bool estCache);
+// But : Remplit les champs de grille
+// Préconditions : Aucune
+// Post condition : Tout les paramètre de la grille ont une valeur valide
+
+void initGrille(Grille &grille, short int taille, bool estVide, bool estCache,
+                char symboleCaseCachee);
+// But : Remplit les champs de grille
+// Préconditions : Aucune
+// Post condition : Tout les paramètre de la grille ont une valeur valide
+
+void initGrille(Grille &grille, short int taille, bool estVide, bool estCache);
+// But : Remplit les champs de grille
+// Préconditions : Aucune
+// Post condition : Tout les paramètre de la grille ont une valeur valide
 
 /*******************************
         Entrées / Sorties
@@ -111,16 +168,7 @@ void initGrille();
 
 void printGrille(const Grille &grille);
 // But : Afficher la grille
-
-/*
-Procedure ou fonction
-Nommage du sous programme
-Typage de la valeur de retour
-Passage de parametres
-Nommage des parametres
-Le But decrit le sous programme (comprehensible)
-Le But explique le role de chacun des parametres
-Typage coordonnees
-*/
+// Préconditions : Aucune
+// Post condition : aucune
 
 #endif  // GRILLE_H
