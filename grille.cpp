@@ -56,9 +56,6 @@ void setSymboleCaseCachee(Grille &grille, char symbole) {
         grille.symboleCaseCachee = symbole;
 }
 
-#include "grille.h"
-#include <iostream>
-
 void genererException(const string &detailException) {
         throw std::invalid_argument(detailException);
 }
