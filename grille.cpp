@@ -101,8 +101,6 @@ void setSymboleCaseCachee(Grille &grille, char symbole) {
         grille.symboleCaseCachee = symbole;
 }
 
-#include"grille.h"
-
 void initGrille(Grille &grille, short int taille, char symbole, bool estVide, char symboleCaseVide, bool estCache, char symboleCaseCachee){
     setTailleGrille(grille, taille);
     if (estVide)
