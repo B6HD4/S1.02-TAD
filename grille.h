@@ -243,4 +243,7 @@ short int ValRtoU(short int val);
 // But : retourne les coordonnées de l'utilisateur à partir des coordonnées
 // réelles
 
+void genererException(const string &detailException) {
+
+
 #endif  // GRILLE_H
