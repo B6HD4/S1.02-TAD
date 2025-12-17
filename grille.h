@@ -6,6 +6,7 @@ Création : 10/12/2025
 
 #ifndef GRILLE_H
 #define GRILLE_H
+#include <string>
 
 struct Case {
         char symbole;   // Symbole stocké dans la case
@@ -181,46 +182,11 @@ False sinon
         Modificateurs
 *******************************/
 
-void initGrille(Grille &grille, short int taille, char symbole, bool estVide,
-                char symboleCaseVide, bool estCache, char symboleCaseCachee);
-// But : Remplit les champs de grille
-// Préconditions : Aucune
-// Post condition : Tout les paramètre de la grille ont une valeur valide
-
-void initGrille(Grille &grille, short int taille, char symbole, bool estVide,
-                char symboleCaseVide, bool estCache);
-// But : Remplit les champs de grille
-// Préconditions : Aucune
-// Post condition : Tout les paramètre de la grille ont une valeur valide
-
-void initGrille(Grille &grille, short int taille, char symbole, bool estVide,
-                bool estCache, char symboleCaseCachee);
-// But : Remplit les champs de grille
-// Préconditions : Aucune
-// Post condition : Tout les paramètre de la grille ont une valeur valide
-
 void initGrille(Grille &grille, short int taille, bool estVide,
                 char symboleCaseVide, bool estCache, char symboleCaseCachee);
 // But : Remplit les champs de grille
 // Préconditions : Aucune
-// Post condition : Tout les paramètre de la grille ont une valeur valide
-
-void initGrille(Grille &grille, short int taille, char symbole, bool estVide,
-                bool estCache);
-// But : Remplit les champs de grille
-// Préconditions : Aucune
-// Post condition : Tout les paramètre de la grille ont une valeur valide
-
-void initGrille(Grille &grille, short int taille, bool estVide, bool estCache,
-                char symboleCaseCachee);
-// But : Remplit les champs de grille
-// Préconditions : Aucune
-// Post condition : Tout les paramètre de la grille ont une valeur valide
-
-void initGrille(Grille &grille, short int taille, bool estVide, bool estCache);
-// But : Remplit les champs de grille
-// Préconditions : Aucune
-// Post condition : Tout les paramètre de la grille ont une valeur valide
+// Post condition : Tout les paramètres de la grille ont une valeur valide
 
 /*******************************
         Entrées / Sorties
