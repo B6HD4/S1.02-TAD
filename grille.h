@@ -197,19 +197,4 @@ void printGrille(const Grille &grille);
 // Préconditions : Aucune
 // Post condition : aucune
 
-/*******************************
-             Utils
-*******************************/
-
-short int ValUtoR(short int val);
-// But : retourne les coordonnées réelles à partir des coordonnées de
-// l'utilisateur
-
-short int ValRtoU(short int val);
-// But : retourne les coordonnées de l'utilisateur à partir des coordonnées
-// réelles
-
-void genererException(const string &detailException);
-
-
 #endif  // GRILLE_H

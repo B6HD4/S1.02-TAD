@@ -8,10 +8,8 @@
  * @remarks
  */
 
- 
 #include "grille.h"
 #include <iostream>
-
 
 /*******************************
              Getters
@@ -33,17 +31,22 @@ char getSymboleCaseCachee(const Grille &grille) {
              Setters
 *******************************/
 
-void setCaseSymbole(Grille &grille, char symbole, short int ligne,
-                    short int colonne) {
-        grille.matrice[ligne][colonne].symbole = symbole;
+void setCaseSymbole(Grille &grille, char symbole, short int numLigne,
+                    short int numColonne) {
+        grille.matrice[numLigne][numColonne].symbole = symbole;
 }
 
-void setCaseCachee(Grille &grille, short int ligne, short int colonne) {
-        grille.matrice[ligne][colonne].estCache = true;
+void setCaseCachee(Grille &grille, short int numLigne, short int numColonne) {
+        grille.matrice[numLigne][numColonne].estCache = true;
 }
 
-void setCaseVisible(Grille &grille, short int ligne, short int colonne) {
-        grille.matrice[ligne][colonne].estCache = false;
+void setCaseVisible(Grille &grille, short int numLigne, short int numColonne) {
+        grille.matrice[numLigne][numColonne].estCache = false;
+}
+
+void setCaseVide(Grille &grille, short int numLigne, short int numColonne) {
+        grille.matrice[numLigne][numColonne].symbole =
+            getSymboleCaseVide(grille);
 }
 
 void setTailleGrille(Grille &grille, short int taille) {
@@ -203,11 +206,9 @@ bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole)
     return 0;
 }
 
-
 /*******************************
         Entrées / Sorties
 *******************************/
-
 
 /*******************************
              Utils
