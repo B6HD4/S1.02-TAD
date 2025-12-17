@@ -62,38 +62,50 @@ void setSymboleCaseCachee(Grille &grille, char symbole) {
         Modificateurs
 *******************************/
 
-void initGrille(Grille &grille, short int taille, bool estVide,char symboleCaseVide, bool estCache, char symboleCaseCachee){
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide,char symboleCaseVide, bool estCache, char symboleCaseCachee)
+{
     setTailleGrille(grille, taille);
+    setSymboleCaseVide(grille, symboleCaseVide);
+    setSymboleCaseCachee(grille, symboleCaseCachee);
+
+    for (unsigned short int i = 0; i < taille-1; i++)
+        {
+            for (unsigned short int j = 0; j < taille-1; j++)
+            {
+                setCaseSymbole(grille, symbole, i, j);
+            }
+        }
+
     if (estVide)
     {
-        for (int i = 0; i < taille-1; i++)
+        for (unsigned short int i = 0; i < taille-1; i++)
         {
-            setSymboleCaseVide(grille, symboleCaseVide);
+            for (unsigned short int j = 0; j < taille-1; j++)
+            {
+                setCaseVide(grille, i, j);
+            }
         }
     }    
-    else if (estCache)
+    if (estCache)
     {
-        for (int i = 0; i < taille-1; i++)
+        for (unsigned short int i = 0; i < taille-1; i++)
         {
-            setSymboleCaseCachee(grille, symboleCaseCachee);
+            for (unsigned short int j = 0; j < taille-1; j++)
+            {
+                setCaseCachee(grille, i, j);
+            }
         }
-    }
-    else if (symbole)
-    {
-        for (int i = 0; i < taille-1; i++)
-        {
-            setCaseSymbole(grille, symbole);
-        }
-    }
+    }    
     else {
-        genererException("Impossible de créer la grille");
+        for (unsigned short int i = 0; i < taille-1; i++)
+        {
+            for (unsigned short int j = 0; j < taille-1; j++)
+            {
+                setCaseVisible(grille, i, j);
+            }
+        }
     }
 }
-
-void initGrille(Grille &grille, short int taille, bool estVide, bool estCache,char symboleCaseCachee){}
-
-void initGrille(Grille &grille, short int taille, bool estVide, bool estCache){}
-
 
 /*******************************
           Observateurs
