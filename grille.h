@@ -51,7 +51,7 @@ char getSymboleCaseCachee(const Grille &grille);
 *******************************/
 void setCaseSymbole(Grille &grille, char symbole, short int ligne,
                     short int colonne);
-// But : Remplit la case(ligne, colonne) avec sybole
+// But : Remplit la case(ligne, colonne) avec symbole
 // Préconditions : La case existe
 // Post condition : La case remplie avec symbole
 
@@ -87,19 +87,17 @@ void setSymboleCaseCachee(Grille &grille, char symbole);
           Observateurs
 *******************************/
 
-bool isCoordoneesValide(const Grille &grille, unsigned short int ligne,
-                        unsigned short int colonne);
+bool isCoordoneesValide(const Grille &grille,  short int numLigne, short int numColonne);
 /* BUT : Indique si le couple (ligne, colonne) désigne (ou pas)
 une case appartenant à la grille
 Précondition : -Grille : la grille de référence (aucune préconditions)
 -Ligne : numéro de ligne, peut être quelconque, même négatifs
 -Colonne : numéro de colonne, peut être quelconque, même négatifs
-Postcondition : True si less coordonnées désignent une case valide de la grille
+Postcondition : True si les coordonnées désignent une case valide de la grille
 False sinon
 */
 
-bool isCaseVide(const Grille &grille, unsigned short int ligne,
-                unsigned short int colonne);
+bool isCaseVide(const Grille &grille, short int numLigne, short int numColonne);
 /*But : Indique si la case est vide
 Précondition : -Grille : la grille de référence (aucune préconditions)
 -Ligne : numéro de ligne de la case désignée
@@ -110,8 +108,7 @@ Postcondition : True si la case est vide
 False sinon
 */
 
-bool isCaseCachee(const Grille &grille, unsigned short int ligne,
-                  unsigned short int colonne);
+bool isCaseCachee(const Grille &grille, short int numLigne, short int numColonne);
 /*But : Indique si la case est cachée
 Précondition : -Grille : la grille de référence (aucune préconditions)
 -Ligne : numéro de ligne de la case désignée
@@ -135,15 +132,14 @@ Postcondition : True si toutes les cases de la grille sont visibles
 False sinon
 */
 
-bool isGrillePleine(Grille &grille);
+bool isGrillePleine(const Grille &grille);
 /*But : Indique si aucune case de la grille "grille" est vide
 Préconditions : Grille : la grille de références (aucune préconditions)
 Postcondition : True si la grille est pleine
 False sinon
 */
 
-bool isAlignementHoriz(Grille &grille, const unsigned short int ligne,
-                       const unsigned short int nbSymbole);
+bool isAlignementHoriz(const Grille &grille, short int numLigne, unsigned short int nbSymbole, char symbole);
 /*But : Indique s'il y a un certain nombre d’un symbole passé en
 paramètre en continu sur une ligne
 Préconditions : Grille : la grille de références (aucune préconditions)
@@ -155,8 +151,7 @@ Postcondition : True si un alignement est trouvé
 False sinon
 */
 
-bool isAlignementVerti(Grille &grille, const unsigned short int colonne,
-                       const unsigned short int nbSymbole);
+bool isAlignementVerti(const Grille &grille, short int numColonne, unsigned short int nbSymbole, char symbole);
 /*But : Indique s'il y a un certain nombre d’un symbole passé
 en paramètre en continu sur une colonne
 Préconditions : Grille : la grille de références (aucune préconditions)
@@ -168,7 +163,7 @@ Postcondition : True si un alignement est trouvé
 False sinon
 */
 
-bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole);
+bool isAlignementDiago(const Grille &grille, unsigned short int nbSymbole, char symbole);
 /*But : Vérifie s'il y a un nombre de symbole en continue sur une diagonale
 Préconditions : Grille : la grille de références (aucune préconditions)
 -Nombre de symbole d'affilée attendus
