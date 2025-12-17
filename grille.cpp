@@ -64,6 +64,11 @@ void setSymboleCaseCachee(Grille &grille, char symbole) {
 
 void initGrille(Grille &grille, short int taille, char symbole, bool estVide,char symboleCaseVide, bool estCache, char symboleCaseCachee)
 {
+    if (taille > TAILLE_TAB)
+    {
+        genererException("Taille supérieure à la taille maximum");
+    }
+    
     setTailleGrille(grille, taille);
     setSymboleCaseVide(grille, symboleCaseVide);
     setSymboleCaseCachee(grille, symboleCaseCachee);
