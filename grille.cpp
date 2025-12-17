@@ -12,13 +12,10 @@
 #include "grille.h"
 #include <iostream>
 
-void genererException(const string &detailException) {
-        throw std::invalid_argument(detailException);
-}
 
-short int ValUtoR(short int val) { return val - 1; }
-
-short int ValRtoU(short int val) { return val + 1; }
+/*******************************
+             Getters
+*******************************/
 
 char getSymboleCase(const Grille &grille, short int ligne, short int colonne) {
         return grille.matrice[ValUtoR(ligne)][ValUtoR(colonne)].symbole;
@@ -31,6 +28,10 @@ char getSymboleCaseVide(const Grille &grille) { return grille.symboleCaseVide; }
 char getSymboleCaseCachee(const Grille &grille) {
         return grille.symboleCaseCachee;
 }
+
+/*******************************
+             Setters
+*******************************/
 
 void setCaseSymbole(Grille &grille, char symbole, short int ligne,
                     short int colonne) {
@@ -56,6 +57,10 @@ void setSymboleCaseVide(Grille &grille, char symbole) {
 void setSymboleCaseCachee(Grille &grille, char symbole) {
         grille.symboleCaseCachee = symbole;
 }
+
+/*******************************
+        Modificateurs
+*******************************/
 
 void initGrille(Grille &grille, short int taille, char symbole, bool estVide, char symboleCaseVide, bool estCache, char symboleCaseCachee){
     setTailleGrille(grille, taille);
@@ -144,9 +149,10 @@ void initGrille(Grille &grille, short int taille, bool estVide, bool estCache,ch
 
 void initGrille(Grille &grille, short int taille, bool estVide, bool estCache){}
 
-/********************************************************************
-*************************OBSERVATEUR**********************************
- *********************************************************************/
+
+/*******************************
+          Observateurs
+*******************************/
 
 bool isCoordoneesValide(const Grille &grille, unsigned short int ligne, unsigned short int colonne)
 {
@@ -234,3 +240,21 @@ bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole)
     }
     return 0;
 }
+
+
+/*******************************
+        Entrées / Sorties
+*******************************/
+
+
+/*******************************
+             Utils
+*******************************/
+
+void genererException(const string &detailException) {
+        throw std::invalid_argument(detailException);
+}
+
+short int ValUtoR(short int val) { return val - 1; }
+
+short int ValRtoU(short int val) { return val + 1; }
