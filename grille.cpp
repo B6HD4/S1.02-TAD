@@ -8,12 +8,143 @@
  * @remarks
  */
 
-int main(void)
-{
-    return 0;
+ 
+#include "grille.h"
+#include <iostream>
+
+void genererException(const string &detailException) {
+        throw std::invalid_argument(detailException);
 }
 
- /********************************************************************
+short int ValUtoR(short int val) { return val - 1; }
+
+short int ValRtoU(short int val) { return val + 1; }
+
+char getSymboleCase(const Grille &grille, short int ligne, short int colonne) {
+        return grille.matrice[ValUtoR(ligne)][ValUtoR(colonne)].symbole;
+}
+
+short int getTailleGrille(const Grille &grille) { return grille.taille; }
+
+char getSymboleCaseVide(const Grille &grille) { return grille.symboleCaseVide; }
+
+char getSymboleCaseCachee(const Grille &grille) {
+        return grille.symboleCaseCachee;
+}
+
+void setCaseSymbole(Grille &grille, char symbole, short int ligne,
+                    short int colonne) {
+        grille.matrice[ligne][colonne].symbole = symbole;
+}
+
+void setCaseCachee(Grille &grille, short int ligne, short int colonne) {
+        grille.matrice[ligne][colonne].estCache = true;
+}
+
+void setCaseVisible(Grille &grille, short int ligne, short int colonne) {
+        grille.matrice[ligne][colonne].estCache = false;
+}
+
+void setTailleGrille(Grille &grille, short int taille) {
+        grille.taille = taille;
+}
+
+void setSymboleCaseVide(Grille &grille, char symbole) {
+        grille.symboleCaseVide = symbole;
+}
+
+void setSymboleCaseCachee(Grille &grille, char symbole) {
+        grille.symboleCaseCachee = symbole;
+}
+
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide, char symboleCaseVide, bool estCache, char symboleCaseCachee){
+    setTailleGrille(grille, taille);
+    if (estVide)
+    {
+        for (int i = 0; i < taille-1; i++)
+        {
+            setSymboleCaseVide(grille, symboleCaseVide);
+        }
+    }    
+    else if (estCache)
+    {
+        for (int i = 0; i < taille-1; i++)
+        {
+            setSymboleCaseCachee(grille, symboleCaseCachee);
+        }
+    }
+    else if (symbole)
+    {
+        for (int i = 0; i < taille-1; i++)
+        {
+            setCaseSymbole(grille, symbole);
+        }
+    }
+    else
+        genererException("Impossible de créer la grille");
+}
+
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide,char symboleCaseVide, bool estCache){
+    setTailleGrille(grille, taille);
+    if (estVide)
+    {
+        for (int i = 0; i < taille-1; i++)
+        {
+            setSymboleCaseVide(grille, symboleCaseVide);
+        }
+    }    
+    else if (estCache)
+    {
+        for (int i = 0; i < taille-1; i++)
+        {
+            setSymboleCaseCachee(grille, '.');
+        }
+    }
+    else if (symbole)
+    {
+        for (int i = 0; i < taille-1; i++)
+        {
+            setCaseSymbole(grille, symbole);
+        }
+    }
+    else
+        genererException("Impossible de créer la grille");
+}
+
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide,bool estCache, char symboleCaseCachee){setTailleGrille(grille, taille);
+    if (estVide)
+    {
+        for (int i = 0; i < taille-1; i++)
+        {
+            setSymboleCaseVide(grille, '_');
+        }
+    }    
+    else if (estCache)
+    {
+        for (int i = 0; i < taille-1; i++)
+        {
+            setSymboleCaseCachee(grille, symboleCaseCachee);
+        }
+    }
+    else if (symbole)
+    {
+        for (int i = 0; i < taille-1; i++)
+        {
+            setCaseSymbole(grille, symbole);
+        }
+    }
+    else
+        genererException("Impossible de créer la grille");}
+
+void initGrille(Grille &grille, short int taille, bool estVide,char symboleCaseVide, bool estCache, char symboleCaseCachee){}
+
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide,bool estCache){}
+
+void initGrille(Grille &grille, short int taille, bool estVide, bool estCache,char symboleCaseCachee){}
+
+void initGrille(Grille &grille, short int taille, bool estVide, bool estCache){}
+
+/********************************************************************
 *************************OBSERVATEUR**********************************
  *********************************************************************/
 
@@ -25,14 +156,6 @@ bool isCoordoneesValide(const Grille &grille, unsigned short int ligne, unsigned
     }
     return False;
 }
-/* BUT : Indique si le couple (ligne, colonne) désigne (ou pas)
-une case appartenant à la grille
-Précondition : -Grille : la grille de référence (aucune préconditions)
--Ligne : numéro de ligne, peut être quelconque, même négatifs
--Colonne : numéro de colonne, peut être quelconque, même négatifs
-Postcondition : True si les coordonnées désignent une case valide de la grille
-False sinon
-*/
 
 bool isCaseVide(const Grille &grille, unsigned short int ligne, unsigned short int colonne)
 {
@@ -42,15 +165,6 @@ bool isCaseVide(const Grille &grille, unsigned short int ligne, unsigned short i
     }
     return False;
 }
-/*But : Indique si la case est vide
-Précondition : -Grille : la grille de référence (aucune préconditions)
--Ligne : numéro de ligne de la case désignée
-Préconditions : La ligne est est valide ( 1 <= ligne <= taille de la grille)
--Colonne : numéro de colonne de la case désignée
-Préconditions : La colonne est valide ( 1 <= colonne <= taille de la grille)
-Postcondition : True si la case est vide
-False sinon
-*/
 
 bool isCaseCachee(const Grille &grille, unsigned short int ligne, unsigned short int colonne)
 {
@@ -60,15 +174,6 @@ bool isCaseCachee(const Grille &grille, unsigned short int ligne, unsigned short
     }
     return False;
 }
-/*But : Indique si la case est cachée
-Précondition : -Grille : la grille de référence (aucune préconditions)
--Ligne : numéro de ligne de la case désignée
-Préconditions : La ligne est est valide ( 1 <= ligne <= taille de la grille)
--Colonne : numéro de colonne de la case désignée
-Préconditions : La colonne est valide ( 1 <= colonne <= taille de la grille)
-Postcondition : True si la case est cachée
-False sinon
-*/
 
 bool isGrilleVide(const Grille &grille)
 {
@@ -84,11 +189,7 @@ bool isGrilleVide(const Grille &grille)
     }
     return True;
 }
-/*But : Inidique si la grille est vide
-Préconditions : Grille : la grille de références (aucune préconditions)
-Postcondition : True si la grille est vide 
-False sinon
-*/
+
 bool isGrilleVisible(const Grille &grille)
 {
     if((ligne > 0) && (colonne > 0))
@@ -97,11 +198,6 @@ bool isGrilleVisible(const Grille &grille)
     }
     return 0;
 }
-/*But : Indique si toute les cases de la grille sont visible
-Préconditions : Grille : la grille de références (aucune préconditions)
-Postcondition : True si toutes les cases de la grille sont visibles
-False sinon
-*/
 
 bool isGrillePleine(Grille &grille)
 {
@@ -111,11 +207,6 @@ bool isGrillePleine(Grille &grille)
     }
     return 0;
 }
-/*But : Indique si aucune case de la grille "grille" est vide
-Préconditions : Grille : la grille de références (aucune préconditions)
-Postcondition : True si la grille est pleine
-False sinon
-*/
 
 bool isAlignementHoriz(Grille &grille, const unsigned short int ligne, const unsigned short int nbSymbole)
 {
@@ -125,16 +216,6 @@ bool isAlignementHoriz(Grille &grille, const unsigned short int ligne, const uns
     }
     return 0;
 }
-/*But : Indique s'il y a un certain nombre d’un symbole passé en 
-paramètre en continu sur une ligne
-Préconditions : Grille : la grille de références (aucune préconditions)
--Ligne : numéro de ligne vérifier
-Préconditions : ne dépasse pas la taille de la grille
--Nombre de symbole d'affilée attendus
-Préconditions : 0 < nombre <= taille
-Postcondition : True si un alignement est trouvé
-False sinon
-*/
 
 bool isAlignementVerti(Grille &grille, const unsigned short int colonne, const unsigned short int nbSymbole)
 {
@@ -144,16 +225,6 @@ bool isAlignementVerti(Grille &grille, const unsigned short int colonne, const u
     }
     return 0;
 }
-/*But : Indique s'il y a un certain nombre d’un symbole passé
-en paramètre en continu sur une colonne
-Préconditions : Grille : la grille de références (aucune préconditions)
--Colonne : numéro de colonne vérifier
-Préconditions : ne dépasse pas la taille de la grille
--Nombre de symbole d'affilée attendus
-Préconditions : 0 < nombre <= taille
-Postcondition : True si un alignement est trouvé
-False sinon
-*/
 
 bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole)
 {
@@ -163,10 +234,3 @@ bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole)
     }
     return 0;
 }
-/*But : Vérifie s'il y a un nombre de symbole en continue sur une diagonale
-Préconditions : Grille : la grille de références (aucune préconditions)
--Nombre de symbole d'affilée attendus
-Préconditions : 0 < nombre <= taille
-Postcondition : True si un alignement est trouvé
-False sinon
-*/

@@ -60,6 +60,11 @@ void setCaseCachee(Grille &grille, short int ligne, short int colonne);
 // Préconditions : La case existe
 // Post condition : La case est cachée
 
+void setCaseVisible(Grille &grille, short int ligne, short int colonne);
+// But : Rend visible la case(ligne, colonne)
+// Préconditions : La case existe
+// Post condition : La case est visible
+
 void setTailleGrille(Grille &grille, short int taille);
 // But : Change la taille logique de la grille pour qu'elle soit taille
 // Préconditions : Aucune
@@ -120,7 +125,7 @@ False sinon
 bool isGrilleVide(const Grille &grille);
 /*But : Inidique si la grille est vide
 Préconditions : Grille : la grille de références (aucune préconditions)
-Postcondition : True si la grille est vide 
+Postcondition : True si la grille est vide
 False sinon
 */
 bool isGrilleVisible(const Grille &grille);
@@ -139,7 +144,7 @@ False sinon
 
 bool isAlignementHoriz(Grille &grille, const unsigned short int ligne,
                        const unsigned short int nbSymbole);
-/*But : Indique s'il y a un certain nombre d’un symbole passé en 
+/*But : Indique s'il y a un certain nombre d’un symbole passé en
 paramètre en continu sur une ligne
 Préconditions : Grille : la grille de références (aucune préconditions)
 -Ligne : numéro de ligne vérifier
@@ -225,5 +230,17 @@ void printGrille(const Grille &grille);
 // But : Afficher la grille
 // Préconditions : Aucune
 // Post condition : aucune
+
+/*******************************
+             Utils
+*******************************/
+
+short int ValUtoR(short int val);
+// But : retourne les coordonnées réelles à partir des coordonnées de
+// l'utilisateur
+
+short int ValRtoU(short int val);
+// But : retourne les coordonnées de l'utilisateur à partir des coordonnées
+// réelles
 
 #endif  // GRILLE_H
