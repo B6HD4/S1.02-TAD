@@ -197,4 +197,6 @@ void printGrille(const Grille &grille);
 // Préconditions : Aucune
 // Post condition : aucune
 
+void afficherLigne(const Case& ligne[], unsigned short int nbColonne);
+
 #endif  // GRILLE_H

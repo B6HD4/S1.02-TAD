@@ -10,6 +10,7 @@
 
 #include "grille.h"
 #include <iostream>
+using namespace std;
 
 /*******************************
              Getters
@@ -209,6 +210,27 @@ bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole)
 /*******************************
         Entrées / Sorties
 *******************************/
+
+/* Exemple d'affichage vu en soutien 
+*
+* void afficherLigne(const Case& ligne[], unsigned short int nbColonne, char leSymboleCaseCachee)
+* {
+*     for (unsigned short int c = 0; c <= nbColonne; c++)
+*     {
+*         if (ligne[c].visibilite)
+*         {
+*             cout << ligne[c].symbole << endl;
+*         }
+*         else
+*         {
+*             cout << leSymboleCaseCachee << endl;
+*         }
+*     }
+* }
+* 
+* // exemple d'appel : afficherLigne(grille.case[l], grille.taille, grille.symboleCaseVide);
+*
+*/
 
 /*******************************
              Utils
