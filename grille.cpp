@@ -229,8 +229,23 @@ bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole)
 * }
 * 
 * // exemple d'appel : afficherLigne(grille.case[l], grille.taille, grille.symboleCaseVide);
-*
+* // il faudrait creer un type pour afficher des cases donc on est obligé de passer la grille car elle est dans un struct
 */
+
+void afficherLigne(const Grille& grille, unsigned int l)
+ {
+     for (unsigned short int c = 0; c <= grille.taille-1; c++)
+     {
+         if (grille.matrice[l, c]->estCache == false)
+         {
+            cout << grille.matrice[l][c].symbole << endl;
+         }
+         else
+         {
+            cout << grille.symboleCaseCachee << endl;
+         }
+     }
+ }
 
 /*******************************
              Utils
