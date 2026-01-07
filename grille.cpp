@@ -120,27 +120,27 @@ void initGrille(Grille &grille, short int taille, char symbole, bool estVide,cha
           Observateurs
 *******************************/
 
-bool isCoordoneesValide(const Grille &grille, unsigned short int ligne, unsigned short int colonne)
+bool isCoordoneesValide(const Grille &grille, short int numLigne, short int numColonne)
 {
-    if((getTailleGrille(grille) >= ligne && ligne > 0) && (getTailleGrille(grille) >= colonne && colonne > 0))
+    if((getTailleGrille(grille) >= numLigne && numLigne > 0) && (getTailleGrille(grille) >= numColonne && numColonne > 0))
     {
         return true;
     }
     return false;
 }
 
-bool isCaseVide(const Grille &grille, unsigned short int ligne, unsigned short int colonne)
+bool isCaseVide(const Grille &grille, short int numLigne, short int numColonne)
 {
-    if((getSymboleCase(grille, ligne, colonne) == getSymboleCaseVide(grille)) && isCoordoneesValide(grille, ligne, colonne))
+    if((getSymboleCase(grille, numLigne, numColonne) == getSymboleCaseVide(grille)) && isCoordoneesValide(grille, numLigne, numColonne))
     {
         return true;
     }
     return false;
 }
 
-bool isCaseCachee(const Grille &grille, unsigned short int ligne, unsigned short int colonne)
+bool isCaseCachee(const Grille &grille, short int numLigne, short int numColonne)
 {
-    if((getSymboleCase(grille, ligne, colonne) == getSymboleCaseCachee(grille)) && isCoordoneesValide(grille, ligne, colonne))
+    if((getSymboleCase(grille, numLigne, numColonne) == getSymboleCaseCachee(grille)) && isCoordoneesValide(grille, numLigne, numColonne))
     {
         return true;
     }
@@ -149,11 +149,11 @@ bool isCaseCachee(const Grille &grille, unsigned short int ligne, unsigned short
 
 bool isGrilleVide(const Grille &grille)
 {
-    for (int i = 0; i > getTailleGrille(grille); i++)
+    for (int i = 0; i <= getTailleGrille(grille); i++)
     {
-        for(int j = 0; j > getTailleGrille(grille); j++)
+        for(int j = 0; j <= getTailleGrille(grille); j++)
         {
-            if(!(getSymboleCase(grille, ligne, colonne) == getSymboleCaseVide(grille)) && isCoordoneesValide(grille, ligne, colonne))
+            if(!((getSymboleCase(grille, i, j) == getSymboleCaseVide(grille)) && isCoordoneesValide(grille, i, j)))
             {
                 return false;
             }
@@ -164,47 +164,71 @@ bool isGrilleVide(const Grille &grille)
 
 bool isGrilleVisible(const Grille &grille)
 {
-    if((ligne > 0) && (colonne > 0))
+  for (int i = 0; i <= getTailleGrille(grille); i++)
     {
-        grille = true;
+        for(int j = 0; j <= getTailleGrille(grille); j++)
+        {
+            if(!((getSymboleCase(grille, i, j) == getSymboleCaseCachee(grille)) && isCoordoneesValide(grille, i, j)))
+            {
+                return false;
+            }
+        }
     }
-    return 0;
+    return true;
 }
 
-bool isGrillePleine(Grille &grille)
+bool isGrillePleine(const Grille &grille)
+{
+    for (int i = 0; i <= getTailleGrille(grille); i++)
+    {
+        for(int j = 0; j <= getTailleGrille(grille); j++)
+        {
+            if((getSymboleCase(grille, i, j) == getSymboleCaseVide(grille)) && isCoordoneesValide(grille, i, j))
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool isAlignementHoriz(const Grille &grille, short int numLigne, unsigned short int nbSymbole, char symbole)
+{
+  /*  unsigned short int compteur = 1;
+    for(int j = 1; j < getTailleGrille(grille); j++)
+    {
+        if(getSymboleCase(grille, numLigne, j) == getSymboleCase(grille, numLigne, j - 1))
+        {
+            compteur++;
+        }
+        else
+        {
+            compteur = 1;
+        }
+        if(compteur >= nbSymbole)
+        {
+            return true;
+        }
+    }
+   */ return false
+}
+
+bool isAlignementVerti(Grille &grille, const short int numColonne, const unsigned short int nbSymbole, const char symbole)
 {
     if((ligne > 0) && (colonne > 0))
     {
-        grille = true;
+        return true;
     }
-    return 0;
+    return false;
 }
 
-bool isAlignementHoriz(Grille &grille, const unsigned short int ligne, const unsigned short int nbSymbole)
+bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole, const char symbole)
 {
     if((ligne > 0) && (colonne > 0))
     {
-        grille = true;
+        return true;
     }
-    return 0;
-}
-
-bool isAlignementVerti(Grille &grille, const unsigned short int colonne, const unsigned short int nbSymbole)
-{
-    if((ligne > 0) && (colonne > 0))
-    {
-        grille = true;
-    }
-    return 0;
-}
-
-bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole)
-{
-    if((ligne > 0) && (colonne > 0))
-    {
-        grille = true;
-    }
-    return 0;
+    return false;
 }
 
 /*******************************
