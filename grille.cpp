@@ -8,10 +8,9 @@
  * @remarks
  */
 
- 
 #include "grille.h"
 #include <iostream>
-
+using namespace std;
 
 /*******************************
              Getters
@@ -33,17 +32,22 @@ char getSymboleCaseCachee(const Grille &grille) {
              Setters
 *******************************/
 
-void setCaseSymbole(Grille &grille, char symbole, short int ligne,
-                    short int colonne) {
-        grille.matrice[ligne][colonne].symbole = symbole;
+void setCaseSymbole(Grille &grille, char symbole, short int numLigne,
+                    short int numColonne) {
+        grille.matrice[numLigne][numColonne].symbole = symbole;
 }
 
-void setCaseCachee(Grille &grille, short int ligne, short int colonne) {
-        grille.matrice[ligne][colonne].estCache = true;
+void setCaseCachee(Grille &grille, short int numLigne, short int numColonne) {
+        grille.matrice[numLigne][numColonne].estCache = true;
 }
 
-void setCaseVisible(Grille &grille, short int ligne, short int colonne) {
-        grille.matrice[ligne][colonne].estCache = false;
+void setCaseVisible(Grille &grille, short int numLigne, short int numColonne) {
+        grille.matrice[numLigne][numColonne].estCache = false;
+}
+
+void setCaseVide(Grille &grille, short int numLigne, short int numColonne) {
+        grille.matrice[numLigne][numColonne].symbole =
+            getSymboleCaseVide(grille);
 }
 
 void setTailleGrille(Grille &grille, short int taille) {
@@ -62,93 +66,55 @@ void setSymboleCaseCachee(Grille &grille, char symbole) {
         Modificateurs
 *******************************/
 
-void initGrille(Grille &grille, short int taille, char symbole, bool estVide, char symboleCaseVide, bool estCache, char symboleCaseCachee){
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide,char symboleCaseVide, bool estCache, char symboleCaseCachee)
+{
+    if (taille > TAILLE_TAB)
+    {
+        genererException("Taille supérieure à la taille maximum");
+    }
+    
     setTailleGrille(grille, taille);
+    setSymboleCaseVide(grille, symboleCaseVide);
+    setSymboleCaseCachee(grille, symboleCaseCachee);
+
+    for (unsigned short int i = 0; i < taille-1; i++)
+        {
+            for (unsigned short int j = 0; j < taille-1; j++)
+            {
+                setCaseSymbole(grille, symbole, i, j);
+            }
+        }
+
     if (estVide)
     {
-        for (int i = 0; i < taille-1; i++)
+        for (unsigned short int i = 0; i < taille-1; i++)
         {
-            setSymboleCaseVide(grille, symboleCaseVide);
+            for (unsigned short int j = 0; j < taille-1; j++)
+            {
+                setCaseVide(grille, i, j);
+            }
         }
     }    
-    else if (estCache)
+    if (estCache)
     {
-        for (int i = 0; i < taille-1; i++)
+        for (unsigned short int i = 0; i < taille-1; i++)
         {
-            setSymboleCaseCachee(grille, symboleCaseCachee);
+            for (unsigned short int j = 0; j < taille-1; j++)
+            {
+                setCaseCachee(grille, i, j);
+            }
+        }
+    }    
+    else {
+        for (unsigned short int i = 0; i < taille-1; i++)
+        {
+            for (unsigned short int j = 0; j < taille-1; j++)
+            {
+                setCaseVisible(grille, i, j);
+            }
         }
     }
-    else if (symbole)
-    {
-        for (int i = 0; i < taille-1; i++)
-        {
-            setCaseSymbole(grille, symbole);
-        }
-    }
-    else
-        genererException("Impossible de créer la grille");
 }
-
-void initGrille(Grille &grille, short int taille, char symbole, bool estVide,char symboleCaseVide, bool estCache){
-    setTailleGrille(grille, taille);
-    if (estVide)
-    {
-        for (int i = 0; i < taille-1; i++)
-        {
-            setSymboleCaseVide(grille, symboleCaseVide);
-        }
-    }    
-    else if (estCache)
-    {
-        for (int i = 0; i < taille-1; i++)
-        {
-            setSymboleCaseCachee(grille, '.');
-        }
-    }
-    else if (symbole)
-    {
-        for (int i = 0; i < taille-1; i++)
-        {
-            setCaseSymbole(grille, symbole);
-        }
-    }
-    else
-        genererException("Impossible de créer la grille");
-}
-
-void initGrille(Grille &grille, short int taille, char symbole, bool estVide,bool estCache, char symboleCaseCachee){setTailleGrille(grille, taille);
-    if (estVide)
-    {
-        for (int i = 0; i < taille-1; i++)
-        {
-            setSymboleCaseVide(grille, '_');
-        }
-    }    
-    else if (estCache)
-    {
-        for (int i = 0; i < taille-1; i++)
-        {
-            setSymboleCaseCachee(grille, symboleCaseCachee);
-        }
-    }
-    else if (symbole)
-    {
-        for (int i = 0; i < taille-1; i++)
-        {
-            setCaseSymbole(grille, symbole);
-        }
-    }
-    else
-        genererException("Impossible de créer la grille");}
-
-void initGrille(Grille &grille, short int taille, bool estVide,char symboleCaseVide, bool estCache, char symboleCaseCachee){}
-
-void initGrille(Grille &grille, short int taille, char symbole, bool estVide,bool estCache){}
-
-void initGrille(Grille &grille, short int taille, bool estVide, bool estCache,char symboleCaseCachee){}
-
-void initGrille(Grille &grille, short int taille, bool estVide, bool estCache){}
-
 
 /*******************************
           Observateurs
@@ -265,11 +231,45 @@ bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole, const
     return false;
 }
 
-
 /*******************************
         Entrées / Sorties
 *******************************/
 
+/* Exemple d'affichage vu en soutien 
+*
+* void afficherLigne(const Case& ligne[], unsigned short int nbColonne, char leSymboleCaseCachee)
+* {
+*     for (unsigned short int c = 0; c <= nbColonne; c++)
+*     {
+*         if (ligne[c].visibilite)
+*         {
+*             cout << ligne[c].symbole << endl;
+*         }
+*         else
+*         {
+*             cout << leSymboleCaseCachee << endl;
+*         }
+*     }
+* }
+* 
+* // exemple d'appel : afficherLigne(grille.case[l], grille.taille, grille.symboleCaseVide);
+* // il faudrait creer un type pour afficher des cases donc on est obligé de passer la grille car elle est dans un struct
+*/
+
+void afficherLigne(const Grille& grille, unsigned int l)
+ {
+     for (unsigned short int c = 0; c <= grille.taille-1; c++)
+     {
+         if (grille.matrice[l, c]->estCache == false)
+         {
+            cout << grille.matrice[l][c].symbole << endl;
+         }
+         else
+         {
+            cout << grille.symboleCaseCachee << endl;
+         }
+     }
+ }
 
 /*******************************
              Utils
