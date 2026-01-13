@@ -50,18 +50,18 @@ char getSymboleCaseCachee(const Grille &grille);
 /*******************************
              Setters
 *******************************/
-void setCaseSymbole(Grille &grille, char symbole, short int ligne,
-                    short int colonne);
+void setCaseSymbole(Grille &grille, char symbole, short int numLigne,
+                    short int numColonne);
 // But : Remplit la case(ligne, colonne) avec symbole
 // Préconditions : La ligne et la colonne sont compris entre 1 et taille
 // Post condition : La case remplie avec symbole
 
-void setCaseCachee(Grille &grille, short int ligne, short int colonne);
+void setCaseCachee(Grille &grille, short int numLigne, short int numColonne);
 // But : Cache la case(ligne, colonne)
 // Préconditions : La ligne et la colonne sont compris entre 1 et taille
 // Post condition : La case est cachée
 
-void setCaseVisible(Grille &grille, short int ligne, short int colonne);
+void setCaseVisible(Grille &grille, short int numLigne, short int numColonne);
 // But : Rend visible la case(ligne, colonne)
 // Préconditions : La ligne et la colonne sont compris entre 1 et taille
 // Post condition : La case est visible

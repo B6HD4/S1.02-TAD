@@ -84,48 +84,6 @@ void setSymboleCaseCachee(Grille &grille, char pSymbole) {
 }
 
 /*******************************
-        Modificateurs
-*******************************/
-
-void initGrille(Grille &grille, short int taille, char symbole, bool estVide,
-                char symboleCaseVide, bool estCache, char symboleCaseCachee) {
-        if (taille > TAILLE_TAB) {
-                genererException("Taille supérieure à la taille maximum");
-        }
-
-        setTailleGrille(grille, taille);
-        setSymboleCaseVide(grille, symboleCaseVide);
-        setSymboleCaseCachee(grille, symboleCaseCachee);
-
-        for (unsigned short int i = 0; i < taille - 1; i++) {
-                for (unsigned short int j = 0; j < taille - 1; j++) {
-                        setCaseSymbole(grille, symbole, i, j);
-                }
-        }
-
-        if (estVide) {
-                for (unsigned short int i = 0; i < taille - 1; i++) {
-                        for (unsigned short int j = 0; j < taille - 1; j++) {
-                                setCaseVide(grille, i, j);
-                        }
-                }
-        }
-        if (estCache) {
-                for (unsigned short int i = 0; i < taille - 1; i++) {
-                        for (unsigned short int j = 0; j < taille - 1; j++) {
-                                setCaseCachee(grille, i, j);
-                        }
-                }
-        } else {
-                for (unsigned short int i = 0; i < taille - 1; i++) {
-                        for (unsigned short int j = 0; j < taille - 1; j++) {
-                                setCaseVisible(grille, i, j);
-                        }
-                }
-        }
-}
-
-/*******************************
           Observateurs
 *******************************/
 
@@ -228,12 +186,62 @@ bool isAlignementVerti(Grille &grille, const short int numColonne,
         return false;
 }
 
-bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole,
+bool isAlignementDiagoPrincipale(Grille &grille,short int numLigne, unsigned short int nbSymbole,
                        const char symbole) {
         if ((ligne > 0) && (colonne > 0)) {
                 return true;
         }
         return false;
+}
+
+bool isAlignementDiagoSecondaire(Grille &grille,short int numLigne, unsigned short int nbSymbole,
+                       const char symbole) {
+        if ((ligne > 0) && (colonne > 0)) {
+                return true;
+        }
+        return false;
+}
+
+/*******************************
+        Modificateurs
+*******************************/
+
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide,
+                char symboleCaseVide, bool estCache, char symboleCaseCachee) {
+        if (taille > TAILLE_TAB) {
+                genererException("Taille supérieure à la taille maximum");
+        }
+
+        setTailleGrille(grille, taille);
+        setSymboleCaseVide(grille, symboleCaseVide);
+        setSymboleCaseCachee(grille, symboleCaseCachee);
+
+        for (unsigned short int i = 0; i < taille - 1; i++) {
+                for (unsigned short int j = 0; j < taille - 1; j++) {
+                        setCaseSymbole(grille, symbole, i, j);
+                }
+        }
+
+        if (estVide) {
+                for (unsigned short int i = 0; i < taille - 1; i++) {
+                        for (unsigned short int j = 0; j < taille - 1; j++) {
+                                setCaseVide(grille, i, j);
+                        }
+                }
+        }
+        if (estCache) {
+                for (unsigned short int i = 0; i < taille - 1; i++) {
+                        for (unsigned short int j = 0; j < taille - 1; j++) {
+                                setCaseCachee(grille, i, j);
+                        }
+                }
+        } else {
+                for (unsigned short int i = 0; i < taille - 1; i++) {
+                        for (unsigned short int j = 0; j < taille - 1; j++) {
+                                setCaseVisible(grille, i, j);
+                        }
+                }
+        }
 }
 
 /*******************************
