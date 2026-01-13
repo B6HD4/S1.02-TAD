@@ -22,15 +22,11 @@ using namespace std;
 void jouerUnTour(Grille &morpion, char symboleJ1, char symboleJ2,
                  unsigned short int tour, int indicFinPartie);
 
-void joueur1joue(Grille &morpion, char symboleJ1, int indicFinPartie);
+void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie, unsigned short int tour);
+/* BUT : */
 
-void joueur2joue(Grille &morpion, char symboleJ2, int indicFinPartie);
-
-void evaluerSiJoueur1gagnant(Grille &morpion, char symboleJ1,
-                             int indicFinPartie);
-
-void evaluerSiJoueur2gagnant(Grille &morpion, char symboleJ2,
-                             int indicFinPartie);
+void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ,
+                            int indicFinPartie);
 
 void afficherResultatPartie(int indicFinPartie);
 
@@ -98,4 +94,43 @@ int main(void) {
         }
 
         return 0;
+}
+
+void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie, unsigned short int tour)
+{
+    // déclaration
+    short int ligneJ;
+    short int colonneJ;
+    bool valide;
+    const int SEUIL_D_EVALUATION = 3;
+
+    // saisie verif
+    do
+    {
+        cout << "Saisir la ligne : ";
+        cin >> ligneJ;
+        cout << "Saisir la colonne : ";
+        cin >> colonneJ;
+
+        if (isCoordoneesValide(morpion, ligneJ, colonneJ) && isCaseVide(morpion, ligneJ, colonneJ))
+        {
+            valide = true;
+        }
+        else
+        {
+            valide = false;
+        }
+    } while (valide == false);
+
+    // placer symbole du joueur sur la grille
+    setCaseSymbole(morpion, symboleJ, ligneJ, colonneJ);
+
+    // afficher grille
+    afficherGrille(morpion);
+
+    // finJeu
+    if (tour >= SEUIL_D_EVALUATION)
+    {
+        evaluerSiJoueurGagnant(morpion, symboleJ, indicFinPartie);
+    }
 }
