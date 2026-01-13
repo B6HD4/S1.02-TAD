@@ -199,7 +199,7 @@ bool isAlignementHoriz(const Grille &grille, short int numLigne,
         return alignementHoriz;  // Retourner le résultat
 }
 
-bool isAlignementVerti(Grille &grille, const short int numColonne,
+bool isAlignementVerti(Grille &grille, short int numColonne,
                        unsigned short int nbSymbole, char symbole) {
         // Initialiser
         bool alignementVerti = false;  // Variable d'alignement
@@ -236,8 +236,7 @@ bool isAlignementVerti(Grille &grille, const short int numColonne,
 }
 
 bool isAlignementDiagoPrincipale(Grille &grille, short int numLigne,
-                                 unsigned short int nbSymbole,
-                                 const char symbole) {
+                                 unsigned short int nbSymbole, char symbole) {
         // Initialiser
         bool alignementDiagoPrincipale = false;  // Variable d'alignement
         short int colonne = 0;                   // Colonne de départ
@@ -294,8 +293,7 @@ bool isAlignementDiagoPrincipale(Grille &grille, short int numLigne,
 }
 
 bool isAlignementDiagoSecondaire(Grille &grille, short int numLigne,
-                                 unsigned short int nbSymbole,
-                                 const char symbole) {
+                                 unsigned short int nbSymbole, char symbole) {
         // Initialiser
         bool alignementDiagoSecondaire = false;  // Variable d'alignement
         short int colonne = getTailleGrille(grille) - 1;  // Colonne de départ
