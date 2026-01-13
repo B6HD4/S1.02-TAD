@@ -24,7 +24,8 @@ void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie,
 /* BUT : Demande au joueur courant les coordonnées souhaitées, vérifie
  * l'éligibilité de ces coordonnées, et appelle evaluerSiJoueurGagnant*/
 
-void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ, int indicFinPartie);
+void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ,
+                            int &indicFinPartie);
 /* BUT : Retourne l'indice du joueur gagnant ou zéro si la grille est pleine
  * sans gagnant*/
 
@@ -56,6 +57,7 @@ int main(void) {
                 cout << "On est au tour : " << tour << endl;
 
                 // Joueur 1 joue
+                cout << "Joueur 1 joue : " << endl;
                 joueurJoue(morpion, symboleJ1, indicFinPartie, tour);
 
                 // Verif fin de partie
@@ -68,22 +70,51 @@ int main(void) {
                 }
 
                 // Joueur 2 joue
+                cout << "Joueur 2 joue : " << endl;
                 joueurJoue(morpion, symboleJ2, indicFinPartie, tour);
+        }
+        // Afficher résultat partie
+        cout << "------ FIN DE PARTIE ------" << endl;
+        switch (indicFinPartie) {
+        case 0:
+                cout << "Egalite ! Grille pleine." << endl;
+                break;
+        case 1:
+                cout << "Bravo, " << symboleJ1 << "a gagne !" << endl;
+                break;
+        case 2:
+                cout << "Bravo, " << symboleJ2 << "a gagne !" << endl;
+                break;
+        default:
+                cout << "Erreur, fin de partie" << endl;
+        }
+}
 
-                // Afficher résultat partie
-                cout << "------ FIN DE PARTIE ------" << endl;
-                switch (indicFinPartie) {
-                case 0:
-                        cout << "Egalite ! Grille pleine." << endl;
-                        break;
-                case 1:
-                        cout << "Bravo, " << symboleJ1 << "a gagne !" << endl;
-                        break;
-                case 2:
-                        cout << "Bravo, " << symboleJ2 << "a gagne !" << endl;
-                        break;
-                default:
-                        cout << "Erreur, fin de partie" << endl;
+void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ,
+                            int &indicFinPartie) {
+        // Initaliser
+        const unsigned short int NB_SYMBOLES_REQUIS = 3;  // Variables pour
+        // connaître le nombre de symbole requis
+
+        if (detecterAlignementHorizontale(morpion, NB_SYMBOLES_REQUIS,
+                                          symboleJ) ||
+            detecterAlignementVerticale(morpion, NB_SYMBOLES_REQUIS,
+                                        symboleJ) ||
+            detecterAlignementDiogoPrinc(morpion, NB_SYMBOLES_REQUIS,
+                                         symboleJ) ||
+            detecterAlignementDiogoSec(
+                morpion, NB_SYMBOLES_REQUIS,
+                symboleJ))  // Vérifier alignement horizontal, vertical et
+                            // diagonal
+        {
+                if (symboleJ == 'X')  // Condition avec le symbole du joueur 1
+                {
+                        indicFinPartie = 1;
+                }
+
+                if (symboleJ == 'O')  // Condition avec le symbole du joueur 2
+                {
+                        indicFinPartie = 2;
                 }
         }
 }
@@ -120,32 +151,5 @@ void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie,
         // finJeu
         if (tour >= SEUIL_D_EVALUATION) {
                 evaluerSiJoueurGagnant(morpion, symboleJ, indicFinPartie);
-        }
-}
-
-void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ,
-                            int indicFinPartie) {
-        // Initaliser
-        short int ligne;  // Variables pour parcourir les lignes
-        unsigned short int nbSymbRequis =
-            3;  // Variables pour connaître le nombre de symbole requis
-
-        if (detecterAlignementHorizontale(morpion, nbSymbRequis, symboleJ) ||
-            detecterAlignementVerticale(morpion, nbSymbRequis, symboleJ) ||
-            detecterAlignementDiogoPrinc(morpion, nbSymbRequis, symboleJ) ||
-            detecterAlignementDiogoSec(
-                morpion, nbSymbRequis,
-                symboleJ))  // Vérifier alignement horizontal, vertical et
-                            // diagonal
-        {
-                if (symboleJ == 'X')  // Condition avec le symbole du joueur 1
-                {
-                        indicFinPartie = 1;
-                }
-
-                if (symboleJ == 'O')  // Condition avec le symbole du joueur 2
-                {
-                        indicFinPartie = 2;
-                }
         }
 }
