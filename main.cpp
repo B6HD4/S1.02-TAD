@@ -19,75 +19,73 @@
 
 using namespace std;
 
-void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie, unsigned short int tour);
-/* BUT : Demande au joueur courant les coordonnées souhaitées, vérifie l'éligibilité de ces coordonnées, et appelle evaluerSiJoueurGagnant*/
+void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie,
+                unsigned short int tour);
+/* BUT : Demande au joueur courant les coordonnées souhaitées, vérifie
+ * l'éligibilité de ces coordonnées, et appelle evaluerSiJoueurGagnant*/
 
-void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ,
-                            int indicFinPartie);
-/* BUT : Retourne l'indice du joueur gagnant ou zéro si la grille est pleine sans gagnant*/
+void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ, int indicFinPartie);
+/* BUT : Retourne l'indice du joueur gagnant ou zéro si la grille est pleine
+ * sans gagnant*/
 
-int main(void)
-{
-    // Variables
-    Grille morpion;
-    char symboleJ1;          // Caractère représentant le joueur 1
-    char symboleJ2;          // Caractère représentant le joueur 2
-    unsigned short int tour; // Numéro du tour courant
-    int indicFinPartie;      // Indice donnant l'identité du vainqueur de la
+int main(void) {
+        // Variables
+        Grille morpion;
+        char symboleJ1;           // Caractère représentant le joueur 1
+        char symboleJ2;           // Caractère représentant le joueur 2
+        unsigned short int tour;  // Numéro du tour courant
+        int indicFinPartie;  // Indice donnant l'identité du vainqueur de la
                              // partie
 
-    // Création grille
-    initGrille(morpion, 3, '-', true, '-', false, '?');
+        // Création grille
+        initGrille(morpion, 3, '-', true, '-', false, '?');
 
-    // Initialiser éléments du jeu
-    symboleJ1 = 'X';
-    symboleJ2 = 'O';
-    tour = 0;
-    indicFinPartie = -1;
+        // Initialiser éléments du jeu
+        symboleJ1 = 'X';
+        symboleJ2 = 'O';
+        tour = 0;
+        indicFinPartie = -1;
 
-    // Afficher grille
-    afficherGrille(morpion);
+        // Afficher grille
+        afficherGrille(morpion);
 
-    // Jouer
-    while (true)
-    {
-        // Gestion tours
-        tour++;
-        cout << "On est au tour : " << tour << endl;
+        // Jouer
+        while (true) {
+                // Gestion tours
+                tour++;
+                cout << "On est au tour : " << tour << endl;
 
-        // Joueur 1 joue
-        joueurJoue(morpion, symboleJ1, indicFinPartie, tour);
+                // Joueur 1 joue
+                joueurJoue(morpion, symboleJ1, indicFinPartie, tour);
 
-        // Verif fin de partie
-        if (indicFinPartie == 1)
-        {
-            break;
+                // Verif fin de partie
+                if (indicFinPartie == 1) {
+                        break;
+                }
+                if (isGrillePleine(morpion)) {
+                        indicFinPartie = 0;
+                        break;
+                }
+
+                // Joueur 2 joue
+                joueurJoue(morpion, symboleJ2, indicFinPartie, tour);
+
+                // Afficher résultat partie
+                cout << "------ FIN DE PARTIE ------" << endl;
+                switch (indicFinPartie) {
+                case 0:
+                        cout << "Egalite ! Grille pleine." << endl;
+                        break;
+                case 1:
+                        cout << "Bravo, " << symboleJ1 << "a gagne !" << endl;
+                        break;
+                case 2:
+                        cout << "Bravo, " << symboleJ2 << "a gagne !" << endl;
+                        break;
+                default:
+                        cout << "Erreur, fin de partie" << endl;
+                }
         }
-        if (isGrillePleine(morpion))
-        {
-            indicFinPartie = 0;
-            break;
-        }
-
-        // Joueur 2 joue
-        joueurJoue(morpion, symboleJ2, indicFinPartie, tour);
-
-        // Afficher résultat partie
-        cout << "------ FIN DE PARTIE ------" << endl;
-        switch (indicFinPartie) {
-        case 0:
-                cout << "Egalite ! Grille pleine." << endl;
-                break;
-        case 1:
-                cout << "Bravo, " << symboleJ1 << "a gagne !" << endl;
-                break;
-        case 2:
-                cout << "Bravo, " << symboleJ2 << "a gagne !" << endl;
-                break;
-        default:
-                cout << "Erreur, fin de partie" << endl;
-        }
-    }
 }
 
 void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie,
@@ -125,26 +123,29 @@ void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie,
         }
 }
 
-void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ, int indicFinPartie)
-{
+void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ,
+                            int indicFinPartie) {
         // Initaliser
-        short int ligne; // Variables pour parcourir les lignes
-        unsigned short int nbSymbRequis = 3; // Variables pour connaître le nombre de symbole requis
+        short int ligne;  // Variables pour parcourir les lignes
+        unsigned short int nbSymbRequis =
+            3;  // Variables pour connaître le nombre de symbole requis
 
-        
-        if(detecterAlignementHorizontale(morpion, nbSymbRequis, symboleJ)||
-                        detecterAlignementVerticale(morpion, nbSymbRequis, symboleJ)
-                        ||detecterAlignementDiogoPrinc(morpion, nbSymbRequis, symboleJ)||
-                        detecterAlignementDiogoSec(morpion, nbSymbRequis, symboleJ)) // Vérifier alignement horizontal, vertical et diagonal
+        if (detecterAlignementHorizontale(morpion, nbSymbRequis, symboleJ) ||
+            detecterAlignementVerticale(morpion, nbSymbRequis, symboleJ) ||
+            detecterAlignementDiogoPrinc(morpion, nbSymbRequis, symboleJ) ||
+            detecterAlignementDiogoSec(
+                morpion, nbSymbRequis,
+                symboleJ))  // Vérifier alignement horizontal, vertical et
+                            // diagonal
         {
-                if(symboleJ == 'X') // Condition avec le symbole du joueur 1
-                {        
+                if (symboleJ == 'X')  // Condition avec le symbole du joueur 1
+                {
                         indicFinPartie = 1;
                 }
 
-                if(symboleJ == 'O') // Condition avec le symbole du joueur 2
+                if (symboleJ == 'O')  // Condition avec le symbole du joueur 2
                 {
                         indicFinPartie = 2;
-                }       
+                }
         }
 }
