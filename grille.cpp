@@ -155,35 +155,124 @@ bool isGrillePleine(const Grille &grille) {
         return true;
 }
 
-bool isAlignementHoriz(const Grille &grille, short int numLigne,
-                       unsigned short int nbSymbole, char symbole) {
-        /*  unsigned short int compteur = 1;
-          for(int j = 1; j < getTailleGrille(grille); j++)
-          {
-              if(getSymboleCase(grille, numLigne, j) == getSymboleCase(grille,
-          numLigne, j - 1))
-              {
-                  compteur++;
-              }
-              else
-              {
-                  compteur = 1;
-              }
-              if(compteur >= nbSymbole)
-              {
-                  return true;
-              }
-          }
-         */
-        return false;
+bool isAlignementHoriz(const Grille &grille, short int numLigne, unsigned short int nbSymbole, char symbole)
+{
+    // Initialiser
+    bool alignementHoriz = false; // Variable d'alignement
+    short int compteur = 0; // Compteur de symboles alignés
+    int ligne = 0; // Ligne de départ
+
+    // Recherche alignement dans la grille
+    while(true)
+    {
+        if(ligne > getTailleGrille(grille)-1) // Fin de la grille
+        {
+            break;
+        }
+        
+        // Evaluation de la condition d'alignement dans la ligne l
+        //Initialiser
+        int colonne = 0; // Colonne de départ
+
+        // Recherche symbole dans la ligne
+        while(true)
+        {
+            if(colonne > getTailleGrille(grille)-1) // Fin de la ligne
+            {
+                break; 
+            }
+
+            // Evaluer la condition dans la colonne c
+
+            if(compteur == nbSymbole) // Condition d'alignement remplie
+            {
+                alignementHoriz = true; // Mettre à vrai la variable d'alignement
+                break; // Sortir de la boucle de recherche
+            }
+
+            if(getSymboleCase(grille, numLigne, colonne) == symbole) // Symbole trouvé
+            {
+                compteur = compteur + 1; // Incrémenter le compteur
+            }
+            else // Symbole non trouvé
+            {
+                compteur = 0; // Réinitialiser le compteur
+            }
+
+            colonne = colonne + 1; // Colonne suivante
+        }
+
+        if(alignementHoriz == true) // Sortir de la boucle principale si alignement trouvé
+        {
+            break;
+        }
+
+        ligne = ligne + 1; // Ligne suivante
+    }
+
+    ligne = 0; // Réinitialiser la ligne
+
+  return alignementHoriz; // Retourner le résultat
 }
 
-bool isAlignementVerti(Grille &grille, const short int numColonne,
-                       const unsigned short int nbSymbole, const char symbole) {
-        if ((ligne > 0) && (colonne > 0)) {
-                return true;
+bool isAlignementVerti(Grille &grille, const short int numColonne, unsigned short int nbSymbole, char symbole)
+{
+  // Initialiser
+    bool alignementVerti = false; // Variable d'alignement
+    short int compteur = 0; // Compteur de symboles alignés
+    int colonne = 0; // Colonne de départ
+
+    // Recherche alignement dans la grille
+    while(true)
+    {
+        if(colonne > getTailleGrille(grille)-1) // Fin de la grille
+        {
+            break;
         }
-        return false;
+        
+        // Evaluation de la condition d'alignement dans la ligne l
+        //Initialiser
+        int ligne = 0; // Colonne de départ
+
+        // Recherche symbole dans la ligne
+        while(true)
+        {
+            if(ligne > getTailleGrille(grille)-1) // Fin de la ligne
+            {
+                break; 
+            }
+
+            // Evaluer la condition dans la ligne l
+
+            if(compteur == nbSymbole) // Condition d'alignement remplie
+            {
+                alignementVerti = true; // Mettre à vrai la variable d'alignement
+                break; // Sortir de la boucle de recherche
+            }
+
+            if(getSymboleCase(grille, numLigne, ligne) == symbole) // Symbole trouvé
+            {
+                compteur = compteur + 1; // Incrémenter le compteur
+            }
+            else // Symbole non trouvé
+            {
+                compteur = 0; // Réinitialiser le compteur
+            }
+
+            ligne = ligne + 1; // Ligne suivante
+        }
+
+        if(alignementVerti == true) // Sortir de la boucle principale si alignement trouvé
+        {
+            break;
+        }
+
+        colonne = colonne + 1; // Colonne suivante
+    }
+
+    colonne = 0; // Réinitialiser la colonne
+
+  return alignementVerti; // Retourner le résultat
 }
 
 bool isAlignementDiagoPrincipale(Grille &grille,short int numLigne, unsigned short int nbSymbole,
@@ -242,7 +331,6 @@ void initGrille(Grille &grille, short int taille, char symbole, bool estVide,
                         }
                 }
         }
-}
 
 /*******************************
         Entrées / Sorties
