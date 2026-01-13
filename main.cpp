@@ -17,17 +17,22 @@
 #include "grille.h"
 
 void jouerUnTour(Grille &morpion, char symboleJ1, char symboleJ2,
-                 unsigned short int tour, int indiceFinDePartie);
+                 unsigned short int tour, int indicFinPartie);
 
-void joueur1joue(Grille &morpion, char symboleJ1, int indiceFinDePartie);
+void joueur1joue(Grille &morpion, char symboleJ1, int indicFinPartie);
 
-void joueur2joue(Grille &morpion, char symboleJ2, int indiceFinDePartie);
+void joueur2joue(Grille &morpion, char symboleJ2, int indicFinPartie);
 
 void evaluerSiJoueur1gagnant(Grille &morpion, char symboleJ1,
-                             int indiceFinDePartie);
+                             int indicFinPartie);
 
 void evaluerSiJoueur2gagnant(Grille &morpion, char symboleJ2,
-                             int indiceFinDePartie);
+                             int indicFinPartie);
+
+void afficherResultatPartie(int indicFinPartie);
+
+void initialiserLesElementsDuJeu(char symboleJ1, char symboleJ2,
+                                 unsigned short int tour, int indicFinPartie);
 
 int main(void) {
         afficherGrille(grilleTest);
