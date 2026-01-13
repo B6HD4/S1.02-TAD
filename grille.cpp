@@ -1,11 +1,18 @@
 /*
- * @brief Corps des primitives de Grille
- * @name grille.cpp
- * @authors Bixente Hiriart--Dicharry <bhdicharry@iutbayonne.univ-pau.fr>
- *          Thibaut Fontaine <tfontaine006@iutbayonne.univ-pau.fr>
- *          Cédric Rouillé <crouille@iutbayonne.univ-pau.fr>
- * @date mar. 16 déc. 2025 16:42:40
- * @remarks
+ * Nom du Fichier : "grille.h"
+ * Contenu : Corps du TAD Grille2D contenant les déclarations des primitives
+ * d'un TAD simple permettant la gestion de grilles de jeux de plateau à 2
+ * dimensions.
+ * Auteurs : Équipe 15, TP 4
+ * Membres : Thibaut Fontaine, Bixente Hiriart--Dicharry, Cédric Rouillé
+ * Déclaration :
+ *       Je soussigné, HIRIART--DICHARRY Bixente, certifie que je suis co-auteur
+ * du code ci-dessous.
+ *       Je soussigné, ROUILLÉ Cedric, certifie que je suis co-auteur du code
+ * ci-dessous.
+ *       Je soussigné, FONTAINE Thibaut, certifie que je suis co-auteur du code
+ * ci-dessous.
+ * Création : 10/12/2025
  */
 
 #include "grille.h"

@@ -1,8 +1,18 @@
 /*
-Fichier : "grille.h"
-Groupe : Thibaut Fontaine, Bixente Hiriart--Dicharry, Cédric Rouillé
-Création : 10/12/2025
-*/
+ * Nom du Fichier : "grille.h"
+ * Contenu : Corps du TAD Grille2D permettant la gestion de grilles de jeux de
+ * plateau à 2 dimensions.
+ * Auteurs : Équipe 15, TP 4
+ * Membres : Thibaut Fontaine, Bixente Hiriart--Dicharry, Cédric Rouillé
+ * Déclaration :
+ *       Je soussigné, HIRIART--DICHARRY Bixente, certifie que je suis co-auteur
+ * du code ci-dessous.
+ *       Je soussigné, ROUILLÉ Cedric, certifie que je suis co-auteur du code
+ * ci-dessous.
+ *       Je soussigné, FONTAINE Thibaut, certifie que je suis co-auteur du code
+ * ci-dessous.
+ * Création : 10/12/2025
+ */
 
 #ifndef GRILLE_H
 #define GRILLE_H
