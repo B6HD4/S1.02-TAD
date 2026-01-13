@@ -19,81 +19,83 @@
 
 using namespace std;
 
-void jouerUnTour(Grille &morpion, char symboleJ1, char symboleJ2,
-                 unsigned short int tour, int indicFinPartie);
-
 void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie, unsigned short int tour);
-/* BUT : */
+/* BUT : Demande au joueur courant les coordonnées souhaitées, vérifie l'éligibilité de ces coordonnées, et appelle evaluerSiJoueurGagnant*/
 
 void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ,
                             int indicFinPartie);
+/* BUT : Retourne l'indice du joueur gagnant ou zéro si la grille est pleine sans gagnant*/
 
-void afficherResultatPartie(int indicFinPartie);
-
-int main(void) {
-        // Variables
-        Grille morpion;
-        char symboleJ1;           // Caractère représentant le joueur 1
-        char symboleJ2;           // Caractère représentant le joueur 2
-        unsigned short int tour;  // Numéro du tour courant
-        int indicFinPartie;  // Indice donnant l'identité du vainqueur de la
+int main(void)
+{
+    // Variables
+    Grille morpion;
+    char symboleJ1;          // Caractère représentant le joueur 1
+    char symboleJ2;          // Caractère représentant le joueur 2
+    unsigned short int tour; // Numéro du tour courant
+    int indicFinPartie;      // Indice donnant l'identité du vainqueur de la
                              // partie
 
-        // Création grille
-        initGrille(morpion, 3, '-', true, '-', false, '?');
+    // Création grille
+    initGrille(morpion, 3, '-', true, '-', false, '?');
 
-        // Initialiser éléments du jeu
-        symboleJ1 = 'X';
-        symboleJ2 = 'O';
-        tour = 0;
-        indicFinPartie = -1;
+    // Initialiser éléments du jeu
+    symboleJ1 = 'X';
+    symboleJ2 = 'O';
+    tour = 0;
+    indicFinPartie = -1;
 
-        // Afficher grille
-        afficherGrille(morpion);
+    // Afficher grille
+    afficherGrille(morpion);
 
-        // Jouer
-        while (true) {
-                // Gestion tours
-                tour++;
-                cout << "On est au tour : " << tour << endl;
+    // Jouer
+    while (true)
+    {
+        // Gestion tours
+        tour++;
+        cout << "On est au tour : " << tour << endl;
 
-                // Joueur 1 joue
-                joueurJoue(morpion, symboleJ1, indicFinPartie, tour);
+        // Joueur 1 joue
+        joueurJoue(morpion, symboleJ1, indicFinPartie, tour);
 
-                // Verif fin de partie
-                if (indicFinPartie == 1) {
-                        break;
-                }
-                if (isGrillePleine(morpion)) {
-                        indicFinPartie = 0;
-                        break;
-                }
-
-                // Joueur 2 joue
-                joueurJoue(morpion, symboleJ2, indicFinPartie, tour);
-
-                // Verif fin de partie
-                if (indicFinPartie == 2) {
-                        break;
-                }
+        // Verif fin de partie
+        if (indicFinPartie == 1)
+        {
+            break;
+        }
+        if (isGrillePleine(morpion))
+        {
+            indicFinPartie = 0;
+            break;
         }
 
-        // Afficher résultat partie
-        switch (indicFinPartie) {
-        case 0:
-                cout << "Egaltite !" << endl;
-                break;
-        case 1:
-                cout << "Bravo, " << symboleJ1 << "a gagne !" << endl;
-                break;
-        case 2:
-                cout << "Bravo, " << symboleJ2 << "a gagne !" << endl;
-                break;
-        default:
-                cout << "Erreur, fin de partie" << endl;
-        }
+        // Joueur 2 joue
+        joueurJoue(morpion, symboleJ2, indicFinPartie, tour);
 
-        return 0;
+        // Verif fin de partie
+        if (indicFinPartie == 2)
+        {
+            break;
+        }
+    }
+
+    // Afficher résultat partie
+    switch (indicFinPartie)
+    {
+    case 0:
+        cout << "Egaltite !" << endl;
+        break;
+    case 1:
+        cout << "Bravo, " << symboleJ1 << "a gagne !" << endl;
+        break;
+    case 2:
+        cout << "Bravo, " << symboleJ2 << "a gagne !" << endl;
+        break;
+    default:
+        cout << "Erreur, fin de partie" << endl;
+    }
+
+    return 0;
 }
 
 void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie, unsigned short int tour)

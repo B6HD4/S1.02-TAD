@@ -211,8 +211,7 @@ Postcondition : aucune
         Modificateurs
 *******************************/
 
-void initGrille(Grille &grille, short int taille, bool estVide,
-                char symboleCaseVide, bool estCache, char symboleCaseCachee);
+void initGrille(Grille &grille, short int taille, char symbole, bool estVide, char symboleCaseVide, bool estCache, char symboleCaseCachee);
 // But : Remplit les champs de grille avec des valeurs valides
 // Préconditions : Aucune
 // Post condition : Tout les paramètres de la grille ont une valeur valide
