@@ -72,6 +72,11 @@ int main(void) {
                 // Joueur 2 joue
                 cout << "Joueur 2 joue : " << endl;
                 joueurJoue(morpion, symboleJ2, indicFinPartie, tour);
+
+                // Verif fin de partie
+                if (indicFinPartie == 2) {
+                        break;
+                }
         }
         // Afficher résultat partie
         cout << "------ FIN DE PARTIE ------" << endl;
