@@ -16,12 +16,20 @@
 
 #include "grille.h"
 
+void jouerUnTour(Grille &morpion, char symboleJ1, char symboleJ2,
+                 unsigned short int tour, int indiceFinDePartie);
+
+void joueur1joue(Grille &morpion, char symboleJ1, int indiceFinDePartie);
+
+void joueur2joue(Grille &morpion, char symboleJ2, int indiceFinDePartie);
+
+void evaluerSiJoueur1gagnant(Grille &morpion, char symboleJ1,
+                             int indiceFinDePartie);
+
+void evaluerSiJoueur2gagnant(Grille &morpion, char symboleJ2,
+                             int indiceFinDePartie);
+
 int main(void) {
-        Grille grilleTest = {
-            {{{'1', true}, {'2', true}}, {{'3', true}, {'4', true}}},
-            2,
-            ' ',
-            '?'};
         afficherGrille(grilleTest);
         return 0;
 }
