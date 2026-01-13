@@ -15,6 +15,7 @@
  */
 
 #include "grille.h"
+#include <iostream>
 
 void jouerUnTour(Grille &morpion, char symboleJ1, char symboleJ2,
                  unsigned short int tour, int indicFinPartie);
@@ -23,11 +24,9 @@ void joueur1joue(Grille &morpion, char symboleJ1, int indicFinPartie);
 
 void joueur2joue(Grille &morpion, char symboleJ2, int indicFinPartie);
 
-void evaluerSiJoueur1gagnant(Grille &morpion, char symboleJ1,
+void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ,
                              int indicFinPartie);
 
-void evaluerSiJoueur2gagnant(Grille &morpion, char symboleJ2,
-                             int indicFinPartie);
 
 void afficherResultatPartie(int indicFinPartie);
 
@@ -37,4 +36,28 @@ void initialiserLesElementsDuJeu(char symboleJ1, char symboleJ2,
 int main(void) {
         afficherGrille(grilleTest);
         return 0;
+}
+
+void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ, int indicFinPartie)
+{
+        // Initaliser
+        short int ligne; // Variables pour parcourir les lignes
+        unsigned short int nbSymbRequis = 3; // Variables pour connaître le nombre de symbole requis
+
+        
+        if(detecterAlignementHorizontale(morpion, nbSymbRequis, symboleJ)||
+                        detecterAlignementVerticale(morpion, nbSymbRequis, symboleJ)
+                        ||detecterAlignementDiogoPrinc(morpion, nbSymbRequis, symboleJ)||
+                        detecterAlignementDiogoSec(morpion, nbSymbRequis, symboleJ)) // Vérifier alignement horizontal, vertical et diagonal
+        {
+                if(symboleJ == 'X') // Condition avec le symbole du joueur 1
+                {        
+                        indicFinPartie = 1;
+                }
+
+                if(symboleJ == 'O') // Condition avec le symbole du joueur 2
+                {
+                        indicFinPartie = 2;
+                }       
+        }
 }

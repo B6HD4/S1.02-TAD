@@ -168,35 +168,67 @@ bool isAlignementHoriz(const Grille &grille, short int numLigne,
         bool alignementHoriz = false;  // Variable d'alignement
         short int compteur = 0;        // Compteur de symboles alignés
         short int colonne = 0;         // Colonne de départ
-        // Recherche symbole dans la ligne
-        while (true) {
-                if (colonne > getTailleGrille(grille) - 1)  // Fin de la ligne
+        
+        while(true)
+        {
+                if(numLigne > getTailleGrillle(grille)- 1) // Fin de la ligne
                 {
                         break;
                 }
 
-                // Evaluer la condition dans la colonne c
+                // Recherche symbole dans la ligne
+                while (true) {
+                        if (colonne > getTailleGrille(grille) - 1)  // Fin de la ligne
+                        {
+                                break;
+                        }
 
-                if (compteur == nbSymbole)  // Condition d'alignement remplie
-                {
-                        alignementHoriz =
-                            true;  // Mettre à vrai la variable d'alignement
-                        break;     // Sortir de la boucle de recherche
+                        // Evaluer la condition dans la colonne c
+
+                        if (compteur == nbSymbole)  // Condition d'alignement remplie
+                        {
+                                alignementHoriz =
+                                        true;  // Mettre à vrai la variable d'alignement
+                                break;     // Sortir de la boucle de recherche
+                        }
+
+                        if (getSymboleCase(grille, numLigne, colonne) ==
+                                symbole)  // Symbole trouvé
+                        {
+                                compteur = compteur + 1;  // Incrémenter le compteur
+                        } else                            // Symbole non trouvé
+                        {
+                                compteur = 0;  // Réinitialiser le compteur
+                        }
+
+                        colonne = colonne + 1;  // Colonne suivante
                 }
 
-                if (getSymboleCase(grille, numLigne, colonne) ==
-                    symbole)  // Symbole trouvé
-                {
-                        compteur = compteur + 1;  // Incrémenter le compteur
-                } else                            // Symbole non trouvé
-                {
-                        compteur = 0;  // Réinitialiser le compteur
-                }
-
-                colonne = colonne + 1;  // Colonne suivante
+                numLigne = numLigne + 1; // Ligne suivante
         }
-
         return alignementHoriz;  // Retourner le résultat
+}
+
+bool detecterAlignementHorizontale(const Grille &grille, unsigned short int nbSymbole, const char symbole)
+{
+        bool detecterAlignementHoriz = false;
+        short int ligne = 0;
+        while(true)
+        {
+                if(ligne > getTailleGrille(grille) - 1)
+                {
+                        break;
+                }
+
+                isAlignementHoriz(grille, ligne, nbSymbole, symbole);
+                if(alignementHoriz)
+                {
+                        detecterAlignementHoriz = true;
+                }
+
+                ligne++;
+        }
+        return detecterAlignementHoriz;
 }
 
 bool isAlignementVerti(Grille &grille, const short int numColonne,
@@ -233,6 +265,28 @@ bool isAlignementVerti(Grille &grille, const short int numColonne,
                 ligne = ligne + 1;  // Ligne suivante
         }
         return alignementVerti;  // Retourner le résultat
+}
+
+bool detecterAlignementVerticale(const Grille &grille, unsigned short int nbSymbole, const char symbole)
+{
+        bool detecterAlignementVerti = false;
+        short int colonne = 0;
+        while(true)
+        {
+                if(colonne > getTailleGrille(grille) - 1)
+                {
+                        break;
+                }
+
+                isAlignementVerti(grille, colonne, nbSymbole, symbole);
+                if(alignementVerti)
+                {
+                        detecterAlignementVerti = true;
+                }
+
+                colonne++;
+        }
+        return detecterAlignementVerti;
 }
 
 bool isAlignementDiagoPrincipale(Grille &grille, short int numLigne,
@@ -293,6 +347,28 @@ bool isAlignementDiagoPrincipale(Grille &grille, short int numLigne,
         return alignementDiagoPrincipale;  // Retourner le résultat
 }
 
+bool detecterAlignementDiogoPrinc(const Grille &grille, unsigned short int nbSymbole, const char symbole)
+{
+        bool detecterAlignementDiagoPrinc = false;
+        short int ligne = 0;
+        while(true)
+        {
+                if(ligne > getTailleGrille(grille) - 1)
+                {
+                        break;
+                }
+
+                isAlignementVerti(grille, ligne, nbSymbole, symbole);
+                if(alignementDiagoPrincipale)
+                {
+                        detecterAlignementDiagoPrinc = true;
+                }
+
+                ligne++;
+        }
+        return detecterAlignementDiagoPrinc;
+}
+
 bool isAlignementDiagoSecondaire(Grille &grille, short int numLigne,
                                  unsigned short int nbSymbole,
                                  const char symbole) {
@@ -348,6 +424,28 @@ bool isAlignementDiagoSecondaire(Grille &grille, short int numLigne,
                 }
         }
         return alignementDiagoSecondaire;  // Retourner le résultat
+}
+
+bool detecterAlignementDiogoSec(const Grille &grille, unsigned short int nbSymbole, const char symbole)
+{
+        bool detecterAlignementDiagoSec = false;
+        short int ligne = 0;
+        while(true)
+        {
+                if(ligne > getTailleGrille(grille) - 1)
+                {
+                        break;
+                }
+
+                isAlignementVerti(grille, ligne, nbSymbole, symbole);
+                if(alignementDiagoSecondaire)
+                {
+                        detecterAlignementDiagoSec = true;
+                }
+
+                ligne++;
+        }
+        return detecterAlignementDiagoSec;
 }
 
 /*******************************
