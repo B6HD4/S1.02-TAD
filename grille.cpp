@@ -170,45 +170,32 @@ bool isAlignementHoriz(const Grille &grille, short int numLigne,
         short int compteur = 0;        // Compteur de symboles alignés
         short int colonne = 1;         // Colonne de départ
 
+        // Recherche symbole dans la ligne
         while (true) {
-                if (numLigne > getTailleGrille(grille))  // Fin de la ligne
+                if (colonne > getTailleGrille(grille))  // Fin de la ligne
                 {
                         break;
                 }
 
-                // Recherche symbole dans la ligne
-                while (true) {
-                        if (colonne >
-                            getTailleGrille(grille))  // Fin de la ligne
-                        {
-                                break;
-                        }
+                // Evaluer la condition dans la colonne c
 
-                        // Evaluer la condition dans la colonne c
-
-                        if (compteur ==
-                            nbSymbole)  // Condition d'alignement remplie
-                        {
-                                alignementHoriz =
-                                    true;  // Mettre à vrai la variable
-                                           // d'alignement
-                                break;     // Sortir de la boucle de recherche
-                        }
-
-                        if (getSymboleCase(grille, numLigne, colonne) ==
-                            symbole)  // Symbole trouvé
-                        {
-                                compteur =
-                                    compteur + 1;  // Incrémenter le compteur
-                        } else                     // Symbole non trouvé
-                        {
-                                compteur = 0;  // Réinitialiser le compteur
-                        }
-
-                        colonne = colonne + 1;  // Colonne suivante
+                if (compteur == nbSymbole)  // Condition d'alignement remplie
+                {
+                        alignementHoriz = true;  // Mettre à vrai la variable
+                                                 // d'alignement
+                        break;  // Sortir de la boucle de recherche
                 }
 
-                numLigne = numLigne + 1;  // Ligne suivante
+                if (getSymboleCase(grille, numLigne, colonne) ==
+                    symbole)  // Symbole trouvé
+                {
+                        compteur = compteur + 1;  // Incrémenter le compteur
+                } else                            // Symbole non trouvé
+                {
+                        compteur = 0;  // Réinitialiser le compteur
+                }
+
+                colonne = colonne + 1;  // Colonne suivante
         }
         return alignementHoriz;  // Retourner le résultat
 }
@@ -224,6 +211,7 @@ bool detecterAlignementHorizontale(const Grille &grille,
 
                 if (isAlignementHoriz(grille, ligne, nbSymbole, symbole)) {
                         detecterAlignementHoriz = true;
+                        break;
                 }
 
                 ligne++;
@@ -277,6 +265,7 @@ bool detecterAlignementVerticale(const Grille &grille,
                 }
                 if (isAlignementVerti(grille, colonne, nbSymbole, symbole)) {
                         detecterAlignementVerti = true;
+                        break;
                 }
 
                 colonne++;
@@ -341,7 +330,7 @@ bool isAlignementDiagoPrincipale(const Grille &grille, short int numLigne,
         return alignementDiagoPrincipale;  // Retourner le résultat
 }
 
-bool detecterAlignementDiogoPrinc(const Grille &grille,
+bool detecterAlignementDiagoPrinc(const Grille &grille,
                                   unsigned short int nbSymbole, char symbole) {
         bool detecterAlignementDiagoPrinc = false;
         short int ligne = 1;
@@ -351,6 +340,7 @@ bool detecterAlignementDiogoPrinc(const Grille &grille,
                 }
                 if (isAlignementVerti(grille, ligne, nbSymbole, symbole)) {
                         detecterAlignementDiagoPrinc = true;
+                        break;
                 }
 
                 ligne++;
@@ -414,7 +404,7 @@ bool isAlignementDiagoSecondaire(const Grille &grille, short int numLigne,
         return alignementDiagoSecondaire;  // Retourner le résultat
 }
 
-bool detecterAlignementDiogoSec(const Grille &grille,
+bool detecterAlignementDiagoSec(const Grille &grille,
                                 unsigned short int nbSymbole,
                                 const char symbole) {
         bool detecterAlignementDiagoSec = false;
@@ -425,6 +415,7 @@ bool detecterAlignementDiogoSec(const Grille &grille,
                 }
                 if (isAlignementVerti(grille, ligne, nbSymbole, symbole)) {
                         detecterAlignementDiagoSec = true;
+                        break;
                 }
 
                 ligne++;

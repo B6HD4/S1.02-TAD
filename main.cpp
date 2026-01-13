@@ -100,9 +100,9 @@ void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ,
                                           symboleJ) ||
             detecterAlignementVerticale(morpion, NB_SYMBOLES_REQUIS,
                                         symboleJ) ||
-            detecterAlignementDiogoPrinc(morpion, NB_SYMBOLES_REQUIS,
+            detecterAlignementDiagoPrinc(morpion, NB_SYMBOLES_REQUIS,
                                          symboleJ) ||
-            detecterAlignementDiogoSec(
+            detecterAlignementDiagoSec(
                 morpion, NB_SYMBOLES_REQUIS,
                 symboleJ))  // Vérifier alignement horizontal, vertical et
                             // diagonal

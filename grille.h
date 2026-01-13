@@ -217,7 +217,7 @@ Préconditions : -Grille : la grille de référence initialisée
 Postcondition : aucune
 */
 
-bool detecterAlignementDiogoPrinc(const Grille &grille,
+bool detecterAlignementDiagoPrinc(const Grille &grille,
                                   unsigned short int nbSymbole, char symbole);
 /*But : Vérifie s'il y a un nombre de symbole en continu en diagonale sur toute
 les lignes de la grille Diagonale principale : diagonale allant d'en haut a
@@ -242,7 +242,7 @@ Préconditions : -Grille : la grille de référence initialisée
 Postcondition : aucune
 */
 
-bool detecterAlignementDiogoSec(const Grille &grille,
+bool detecterAlignementDiagoSec(const Grille &grille,
                                 unsigned short int nbSymbole,
                                 const char symbole);
 /*But : Vérifie s'il y a un nombre de symbole en continu en diagonale sur toute
