@@ -211,7 +211,13 @@ void initGrille(Grille &grille, short int taille, bool estVide,
         Entrées / Sorties
 *******************************/
 
-void printGrille(const Grille &grille);
+void afficherLigne(const Grille &grille, short int ligne);
+// But : affiche la ligne passée en paramètre
+// Préconditions : la grille de référence est initialisée
+// ligne : la ligne est comprise entre 1 et taille
+// Post condition : aucune
+
+void afficherGrille(const Grille &grille);
 // But : Affiche la grille
 // Préconditions : la grille de référence initialisée
 // Post condition : aucune
