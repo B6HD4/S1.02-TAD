@@ -167,6 +167,17 @@ Préconditions : -Grille : la grille de référence initialisée
 Postcondition : aucune
 */
 
+bool detecterAlignementHorizontale(const Grille &grille, unsigned short int nbSymbole, const char symbole);
+/*But : Indique s'il y a un certain nombre d’un symbole passé en
+paramètre en continu sur toute les lignes de la grille
+Préconditions : -Grille : la grille de référence initialisée
+-numLigne : numéro de ligne vérifier
+        0 < numLigne <= taille
+-nbSymbole : nombre de symbole d'affilée attendus
+        0 < nbSymbole <= taille
+Postcondition : aucune
+*/
+
 bool isAlignementVerti(const Grille &grille, short int numColonne,
                        unsigned short int nbSymbole, char symbole);
 /*But : Indique s'il y a un certain nombre d’un symbole passé
@@ -178,6 +189,18 @@ Préconditions : -Grille : la grille de référence initialisée
         0 < nbSymbole <= taille
 Postcondition : aucune
 */
+
+bool detecterAlignementVerticale(const Grille &grille, unsigned short int nbSymbole, const char symbole);
+/*But : Indique s'il y a un certain nombre d’un symbole passé
+en paramètre en continu sur toute les colonnes de la grille
+Préconditions : -Grille : la grille de référence initialisée
+-numColonne : numéro de colonne vérifier
+        0 < numColonne <= taille
+-nbSymbole : nombre de symbole d'affilée attendus
+        0 < nbSymbole <= taille
+Postcondition : aucune
+*/
+
 
 bool isAlignementDiagoPrincipale(const Grille &grille, short int numLigne,
                                  unsigned short int nbSymbole, char symbole);
@@ -193,10 +216,36 @@ Préconditions : -Grille : la grille de référence initialisée
 Postcondition : aucune
 */
 
+bool detecterAlignementDiogoPrinc(const Grille &grille, unsigned short int nbSymbole, const char symbole);
+/*But : Vérifie s'il y a un nombre de symbole en continu en diagonale sur toute les
+lignes de la grille
+Diagonale principale : diagonale allant d'en haut a gauche jusqu'à en bas à
+droite
+Préconditions : -Grille : la grille de référence initialisée
+-numLigne : numéro de ligne vérifier
+        0 < numLigne <= taille
+-nbSymbole : nombre de symbole d'affilée attendus
+        0 < nbSymbole <= taille
+Postcondition : aucune
+*/
+
 bool isAlignementDiagoSecondaire(const Grille &grille, short int numLigne,
                                  unsigned short int nbSymbole, char symbole);
 /*But : Vérifie s'il y a un nombre de symbole en continu en diagonale sur une
 ligne
+Diagonale secondaire : diagonale allant d'en haut a droite jusqu'à en bas à
+gauche
+Préconditions : -Grille : la grille de référence initialisée
+-numLigne : numéro de ligne vérifier
+        0 < numLigne <= taille
+-nbSymbole : nombre de symbole d'affilée attendus
+        0 < nbSymbole <= taille
+Postcondition : aucune
+*/
+
+bool detecterAlignementDiogoSec(const Grille &grille, unsigned short int nbSymbole, const char symbole);
+/*But : Vérifie s'il y a un nombre de symbole en continu en diagonale sur toute
+ligness de la grille
 Diagonale secondaire : diagonale allant d'en haut a droite jusqu'à en bas à
 gauche
 Préconditions : -Grille : la grille de référence initialisée

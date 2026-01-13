@@ -124,3 +124,27 @@ void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie,
                 evaluerSiJoueurGagnant(morpion, symboleJ, indicFinPartie);
         }
 }
+
+void evaluerSiJoueurGagnant(Grille &morpion, char symboleJ, int indicFinPartie)
+{
+        // Initaliser
+        short int ligne; // Variables pour parcourir les lignes
+        unsigned short int nbSymbRequis = 3; // Variables pour connaître le nombre de symbole requis
+
+        
+        if(detecterAlignementHorizontale(morpion, nbSymbRequis, symboleJ)||
+                        detecterAlignementVerticale(morpion, nbSymbRequis, symboleJ)
+                        ||detecterAlignementDiogoPrinc(morpion, nbSymbRequis, symboleJ)||
+                        detecterAlignementDiogoSec(morpion, nbSymbRequis, symboleJ)) // Vérifier alignement horizontal, vertical et diagonal
+        {
+                if(symboleJ == 'X') // Condition avec le symbole du joueur 1
+                {        
+                        indicFinPartie = 1;
+                }
+
+                if(symboleJ == 'O') // Condition avec le symbole du joueur 2
+                {
+                        indicFinPartie = 2;
+                }       
+        }
+}
