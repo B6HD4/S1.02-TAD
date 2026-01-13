@@ -231,24 +231,24 @@ bool isAlignementHoriz(const Grille &grille, short int numLigne, unsigned short 
     // Initialiser
     bool alignementHoriz = false; // Variable d'alignement
     short int compteur = 0; // Compteur de symboles alignés
-    int l = 0; // Ligne de départ
+    int ligne = 0; // Ligne de départ
 
     // Recherche alignement dans la grille
     while(true)
     {
-        if(l>getTailleGrille(grille)-1) // Fin de la grille
+        if(ligne > getTailleGrille(grille)-1) // Fin de la grille
         {
             break;
         }
         
         // Evaluation de la condition d'alignement dans la ligne l
         //Initialiser
-        int c = 0; // Colonne de départ
+        int colonne = 0; // Colonne de départ
 
         // Recherche symbole dans la ligne
         while(true)
         {
-            if(c > getTailleGrille(grille)-1) // Fin de la ligne
+            if(colonne > getTailleGrille(grille)-1) // Fin de la ligne
             {
                 break; 
             }
@@ -261,7 +261,7 @@ bool isAlignementHoriz(const Grille &grille, short int numLigne, unsigned short 
                 break; // Sortir de la boucle de recherche
             }
 
-            if(getSymboleCase(grille, numLigne, c) == symbole) // Symbole trouvé
+            if(getSymboleCase(grille, numLigne, colonne) == symbole) // Symbole trouvé
             {
                 compteur = compteur + 1; // Incrémenter le compteur
             }
@@ -270,7 +270,7 @@ bool isAlignementHoriz(const Grille &grille, short int numLigne, unsigned short 
                 compteur = 0; // Réinitialiser le compteur
             }
 
-            c = c + 1; // Colonne suivante
+            colonne = colonne + 1; // Colonne suivante
         }
 
         if(alignementHoriz == true) // Sortir de la boucle principale si alignement trouvé
@@ -278,17 +278,72 @@ bool isAlignementHoriz(const Grille &grille, short int numLigne, unsigned short 
             break;
         }
 
-        l = l + 1; // Ligne suivante
+        ligne = ligne + 1; // Ligne suivante
     }
 
-    l = 0; // Réinitialiser la ligne
+    ligne = 0; // Réinitialiser la ligne
 
   return alignementHoriz; // Retourner le résultat
 }
 
 bool isAlignementVerti(Grille &grille, const short int numColonne, const unsigned short int nbSymbole, const char symbole)
 {
-    return false;
+  // Initialiser
+    bool alignementVerti = false; // Variable d'alignement
+    short int compteur = 0; // Compteur de symboles alignés
+    int colonne = 0; // Colonne de départ
+
+    // Recherche alignement dans la grille
+    while(true)
+    {
+        if(colonne > getTailleGrille(grille)-1) // Fin de la grille
+        {
+            break;
+        }
+        
+        // Evaluation de la condition d'alignement dans la ligne l
+        //Initialiser
+        int ligne = 0; // Colonne de départ
+
+        // Recherche symbole dans la ligne
+        while(true)
+        {
+            if(ligne > getTailleGrille(grille)-1) // Fin de la ligne
+            {
+                break; 
+            }
+
+            // Evaluer la condition dans la ligne l
+
+            if(compteur == nbSymbole) // Condition d'alignement remplie
+            {
+                alignementVerti = true; // Mettre à vrai la variable d'alignement
+                break; // Sortir de la boucle de recherche
+            }
+
+            if(getSymboleCase(grille, numLigne, ligne) == symbole) // Symbole trouvé
+            {
+                compteur = compteur + 1; // Incrémenter le compteur
+            }
+            else // Symbole non trouvé
+            {
+                compteur = 0; // Réinitialiser le compteur
+            }
+
+            ligne = ligne + 1; // Ligne suivante
+        }
+
+        if(alignementVerti == true) // Sortir de la boucle principale si alignement trouvé
+        {
+            break;
+        }
+
+        colonne = colonne + 1; // Colonne suivante
+    }
+
+    colonne = 0; // Réinitialiser la colonne
+
+  return alignementVerti; // Retourner le résultat
 }
 
 bool isAlignementDiago(Grille &grille, const unsigned short int nbSymbole, const char symbole)
