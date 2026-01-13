@@ -37,13 +37,14 @@ void afficherResultatPartie(int indicFinPartie);
 int main(void) {
         // Variables
         Grille morpion;
-        char symboleJ1;
-        char symboleJ2;
-        unsigned short int tour;
-        int indicFinPartie;
+        char symboleJ1;           // Caractère représentant le joueur 1
+        char symboleJ2;           // Caractère représentant le joueur 2
+        unsigned short int tour;  // Numéro du tour courant
+        int indicFinPartie;  // Indice donnant l'identité du vainqueur de la
+                             // partie
 
         // Création grille
-        initGrille(morpion, 3, ' ', true, ' ', false, '?');
+        initGrille(morpion, 3, '-', true, '-', false, '?');
 
         // Initialiser éléments du jeu
         symboleJ1 = 'X';
