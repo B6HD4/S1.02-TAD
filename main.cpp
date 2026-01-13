@@ -72,67 +72,55 @@ int main(void)
         // Joueur 2 joue
         joueurJoue(morpion, symboleJ2, indicFinPartie, tour);
 
-        // Verif fin de partie
-        if (indicFinPartie == 2)
-        {
-            break;
+        // Afficher résultat partie
+        cout << "------ FIN DE PARTIE ------" << endl;
+        switch (indicFinPartie) {
+        case 0:
+                cout << "Egalite ! Grille pleine." << endl;
+                break;
+        case 1:
+                cout << "Bravo, " << symboleJ1 << "a gagne !" << endl;
+                break;
+        case 2:
+                cout << "Bravo, " << symboleJ2 << "a gagne !" << endl;
+                break;
+        default:
+                cout << "Erreur, fin de partie" << endl;
         }
     }
-
-    // Afficher résultat partie
-    switch (indicFinPartie)
-    {
-    case 0:
-        cout << "Egaltite !" << endl;
-        break;
-    case 1:
-        cout << "Bravo, " << symboleJ1 << "a gagne !" << endl;
-        break;
-    case 2:
-        cout << "Bravo, " << symboleJ2 << "a gagne !" << endl;
-        break;
-    default:
-        cout << "Erreur, fin de partie" << endl;
-    }
-
-    return 0;
 }
 
-void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie, unsigned short int tour)
-{
-    // déclaration
-    short int ligneJ;
-    short int colonneJ;
-    bool valide;
-    const int SEUIL_D_EVALUATION = 3;
+void joueurJoue(Grille &morpion, char symboleJ, int indicFinPartie,
+                unsigned short int tour) {
+        // déclaration
+        short int ligneJ;
+        short int colonneJ;
+        bool valide;
+        const int SEUIL_D_EVALUATION = 3;
 
-    // saisie verif
-    do
-    {
-        cout << "Saisir la ligne : ";
-        cin >> ligneJ;
-        cout << "Saisir la colonne : ";
-        cin >> colonneJ;
+        // saisie verif
+        do {
+                cout << "Saisir la ligne : ";
+                cin >> ligneJ;
+                cout << "Saisir la colonne : ";
+                cin >> colonneJ;
 
-        if (isCoordoneesValide(morpion, ligneJ, colonneJ) && isCaseVide(morpion, ligneJ, colonneJ))
-        {
-            valide = true;
+                if (isCoordoneesValide(morpion, ligneJ, colonneJ) &&
+                    isCaseVide(morpion, ligneJ, colonneJ)) {
+                        valide = true;
+                } else {
+                        valide = false;
+                }
+        } while (valide == false);
+
+        // placer symbole du joueur sur la grille
+        setCaseSymbole(morpion, symboleJ, ligneJ, colonneJ);
+
+        // afficher grille
+        afficherGrille(morpion);
+
+        // finJeu
+        if (tour >= SEUIL_D_EVALUATION) {
+                evaluerSiJoueurGagnant(morpion, symboleJ, indicFinPartie);
         }
-        else
-        {
-            valide = false;
-        }
-    } while (valide == false);
-
-    // placer symbole du joueur sur la grille
-    setCaseSymbole(morpion, symboleJ, ligneJ, colonneJ);
-
-    // afficher grille
-    afficherGrille(morpion);
-
-    // finJeu
-    if (tour >= SEUIL_D_EVALUATION)
-    {
-        evaluerSiJoueurGagnant(morpion, symboleJ, indicFinPartie);
-    }
 }
